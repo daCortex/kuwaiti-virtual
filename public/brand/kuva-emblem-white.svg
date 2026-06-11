@@ -1,0 +1,7 @@
+<svg width="72" height="44" viewBox="0 0 72 44" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Kuwaiti Virtual">
+  <!-- Soaring falcon wing — three swept feathers ascending -->
+  <path d="M4 34 C20 30 34 24 64 8" stroke="#9CC4E0" stroke-width="4" stroke-linecap="round"/>
+  <path d="M6 26 C20 23 30 19 52 9" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+  <path d="M10 18 C20 16 26 14 40 9" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="64" cy="9" r="4" fill="#9CC4E0"/>
+</svg>
