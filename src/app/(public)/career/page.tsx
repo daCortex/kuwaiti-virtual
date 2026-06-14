@@ -10,7 +10,7 @@ export default function CareerPage() {
       <header className="reveal">
         <p className="eyebrow">Progression</p>
         <h1 className="mt-2 font-display text-4xl font-semibold text-cream lg:text-5xl">From First Officer, to Captain.</h1>
-        <p className="mt-4 max-w-2xl text-cream-dim">Seven ranks. Three flying modes. A single, structured path that rewards every logged hour — from your first Starter flight to the Sovereign command seat.</p>
+        <p className="mt-4 max-w-2xl text-cream-dim">Seven ranks. Three flying modes. A single, structured path that rewards every logged hour — from your first Cadet flight to the BlueBird Commander command seat.</p>
       </header>
 
       {/* The ladder */}
@@ -47,7 +47,7 @@ export default function CareerPage() {
 
       {/* CTA */}
       <section className="mt-14 flex flex-col items-center gap-4 rounded-3xl border border-obsidian bg-ink-900 px-6 py-12 text-center">
-        <h2 className="font-display text-2xl font-semibold text-cream">Your career starts at Starter.</h2>
+        <h2 className="font-display text-2xl font-semibold text-cream">Your career starts at Cadet.</h2>
         <Link href="/join" className="rounded-full bg-gold px-7 py-3 text-sm font-semibold text-white transition-all hover:brightness-125">Apply now</Link>
       </section>
     </div>

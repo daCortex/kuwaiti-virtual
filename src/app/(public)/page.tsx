@@ -22,7 +22,7 @@ function legs() {
 }
 
 const VALUES = [
-  { tag: "Career Ranks", title: "Seven ranks. One ascent.", body: "Climb from Starter to Sovereign across 1,000 hours of structured progression.", href: "/ranks" },
+  { tag: "Career Ranks", title: "Seven ranks. One ascent.", body: "Climb from Cadet to BlueBird Commander across 1,000 hours of structured progression.", href: "/ranks" },
   { tag: "Career Mode", title: "Every flight, credited.", body: "Log hours across seven aircraft and 70 routes — your record follows you.", href: "/career" },
   { tag: "Leadership", title: "A crew built on precision.", body: "A real org structure — Founder, CEO, Board and four staff units.", href: "/about" },
   { tag: "BlueBird Banking", title: "An economy that rewards.", body: "Earn BlueBird Miles with every flight and rise through BlueBird Rewards.", href: "/plus" },
@@ -41,7 +41,7 @@ export default function Home() {
             Elevating virtual aviation.
           </h1>
           <p className="reveal mt-6 max-w-xl text-lg leading-relaxed text-white/70" style={{ animationDelay: "160ms" }}>
-            Experience the skies with a community dedicated to simulated realism and excellence — Arabian precision, from your first Starter flight to the Sovereign command seat.
+            Experience the skies with a community dedicated to simulated realism and excellence — Arabian precision, from your first Cadet flight to the BlueBird Commander command seat.
           </p>
           <div className="reveal mt-9 flex flex-wrap gap-3" style={{ animationDelay: "240ms" }}>
             <Link href="/join" className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-fin-blue transition-transform hover:scale-[1.03]">Apply Now</Link>
@@ -82,7 +82,7 @@ export default function Home() {
       {/* CTA */}
       <section className="mx-auto max-w-7xl px-5 pb-24 lg:px-8">
         <div className="aurora flex flex-col items-center gap-5 rounded-3xl px-6 py-14 text-center">
-          <h2 className="font-display text-3xl font-semibold text-white lg:text-4xl">Your career starts at Starter.</h2>
+          <h2 className="font-display text-3xl font-semibold text-white lg:text-4xl">Your career starts at Cadet.</h2>
           <p className="max-w-md text-white/70">Join a community of pilots committed to realism, excellence, and Arabian precision.</p>
           <Link href="/join" className="rounded-full bg-white px-7 py-3 text-sm font-semibold text-fin-blue transition-transform hover:scale-[1.03]">Apply to Kuwaiti Virtual</Link>
         </div>

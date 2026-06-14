@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { getPilotDashboard, fmtHours, fmtDate, timeAgo } from "@/lib/portal";
 import { computeAp } from "@/lib/career";
-import { getRotw, getSpotlightRoutes, getDispatches, isSpotlight, firstFlightNo } from "@/lib/ops";
+import { getRotw, getSpotlightRoutes, isSpotlight, firstFlightNo } from "@/lib/ops";
 import { listNews } from "@/lib/db";
 import { airportCity } from "@/lib/airports";
 import { CountUp } from "@/components/portal/CountUp";
@@ -23,9 +23,6 @@ export default async function Dashboard() {
   const { rank, tier, license } = d;
   const rotw = getRotw();
   const spotlights = getSpotlightRoutes();
-  const dispatches = d.gates.career
-    ? getDispatches(d.session.pilotId, { authorizedFleet: d.fleet, rankMultiplier: d.rankMultiplier })
-    : [];
   const rotwAp = computeAp(rotw.minutes, { spotlight: isSpotlight(rotw.routeNumber), rankMultiplier: d.rankMultiplier }).net;
   const firstName = d.session.displayName.split(" ")[0];
   const events = (await listNews(4)).filter((e) => e.category !== "Route of the Week").slice(0, 2);
@@ -76,7 +73,7 @@ export default async function Dashboard() {
           { label: "Flight time", value: fmtHours(d.totalMinutes) },
           { label: "PIREPs filed", value: d.totalPireps.toLocaleString() },
           { label: "Last PIREP", value: timeAgo(d.lastPirepAt), sub: fmtDate(d.lastPirepAt) },
-          { label: "Next rank", value: rank.next ? rank.next.name : "Maxed", sub: rank.next ? `${Math.round(rank.hoursToNext!)}h to go` : "Sovereign" },
+          { label: "Next rank", value: rank.next ? rank.next.name : "Maxed", sub: rank.next ? `${Math.round(rank.hoursToNext!)}h to go` : "BlueBird Commander" },
         ].map((c) => (
           <div key={c.label} className="rounded-2xl border border-obsidian bg-ink-900 p-4">
             <p className="text-[0.7rem] uppercase tracking-[0.16em] text-cream-faint">{c.label}</p>
@@ -86,10 +83,9 @@ export default async function Dashboard() {
         ))}
       </section>
 
-      {/* ============ TODAY: featured route + dispatch ============ */}
-      <section className="mt-4 grid gap-4 lg:grid-cols-3">
-        {/* Route of the week */}
-        <div className="rise overflow-hidden rounded-2xl border border-obsidian bg-ink-900 lift lg:col-span-2">
+      {/* ============ ROUTE OF THE WEEK ============ */}
+      <section className="mt-4">
+        <div className="rise overflow-hidden rounded-2xl border border-obsidian bg-ink-900 lift">
           <div className="flex items-center justify-between border-b border-obsidian/70 px-6 py-3">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">✦ Route of the Week</p>
             {spotlights.length > 0 && <span className="text-xs text-cream-faint">2× spotlight: {spotlights.map((s) => `${s.dep}→${s.arr}`).join(", ")}</span>}
@@ -97,7 +93,7 @@ export default async function Dashboard() {
           <div className="flex flex-col gap-5 px-6 py-6 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <div className="font-display text-2xl font-semibold text-cream sm:text-3xl">{airportCity(rotw.dep)} <span className="text-gold">→</span> {airportCity(rotw.arr)}</div>
-              <p className="mt-1.5 text-sm text-cream-faint">{firstFlightNo(rotw)} · {rotw.aircraft.replace(/^Kuwaiti |^Kuwaiti /, "")} · {fmtHours(rotw.minutes)}</p>
+              <p className="mt-1.5 text-sm text-cream-faint">{firstFlightNo(rotw)} · {rotw.aircraft.replace(/^Kuwaiti /, "")} · {fmtHours(rotw.minutes)}</p>
             </div>
             <div className="flex items-center gap-5">
               <div className="text-right">
@@ -107,32 +103,6 @@ export default async function Dashboard() {
               <Link href="/crew/file" className="rounded-full bg-gold px-5 py-2.5 text-sm font-medium text-white transition-all hover:brightness-125">Fly it</Link>
             </div>
           </div>
-        </div>
-
-        {/* Today's dispatch (compact) */}
-        <div className="rise rounded-2xl border border-obsidian bg-ink-900 lift">
-          <div className="flex items-center justify-between border-b border-obsidian/70 px-5 py-3">
-            <p className="text-sm font-semibold text-cream">Today’s dispatch</p>
-            <Link href="/crew/career" className="text-xs text-gold hover:underline">All →</Link>
-          </div>
-          {d.gates.career ? (
-            <ul className="divide-y divide-obsidian/60">
-              {dispatches.map((dp) => (
-                <li key={dp.id} className="flex items-center justify-between px-5 py-3">
-                  <div className="min-w-0">
-                    <p className="truncate text-sm font-medium text-cream">{airportCity(dp.dep)} → {airportCity(dp.arr)}</p>
-                    <p className="text-xs text-cream-faint">{dp.flightNo} · {fmtHours(dp.minutes)}{dp.spotlight ? " · 2×" : ""}</p>
-                  </div>
-                  <span className="shrink-0 pl-3 text-sm font-semibold text-cream">✦ {dp.maxAp.toLocaleString()}</span>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <div className="px-5 py-6 text-center">
-              <p className="text-sm text-cream-dim">Career Mode unlocks at <span className="font-medium text-cream">Oasis</span></p>
-              <p className="mt-1 text-xs text-cream-faint">{Math.max(0, Math.ceil(115 - d.totalHours))} flight hours to go</p>
-            </div>
-          )}
         </div>
       </section>
 
@@ -161,7 +131,6 @@ export default async function Dashboard() {
           <Pill href="/crew/routes" label="Route database" />
           <Pill href="/crew/map" label="Live map" />
           <Pill href="/crew/logbook" label="Logbook" />
-          <Pill href="/crew/cargo" label="Cargo" locked={!d.gates.cargo} />
           <Pill href="/crew/special-ops" label="Special Ops" locked={!d.gates.specialOps} />
           <Pill href="/crew/discover" label="Alliance Discover" locked={!d.gates.discover} />
         </div>

@@ -7,19 +7,29 @@ export default function PlusPage() {
   return (
     <div className="mx-auto max-w-5xl px-5 py-16 lg:px-8 lg:py-20">
       <header className="reveal">
-        <p className="eyebrow">BlueBird Banking</p>
-        <h1 className="mt-2 font-display text-4xl font-semibold text-cream lg:text-5xl">The currency of your career.</h1>
-        <p className="mt-4 max-w-2xl text-cream-dim">BlueBird Rewards is a private economy for our pilots. Earn BlueBird Miles (AP) with every flight and climb five tiers — each milestone a recognition of your dedication to the airline.</p>
+        <p className="eyebrow">BlueBird Rewards</p>
+        <h1 className="mt-2 font-display text-4xl font-semibold text-cream lg:text-5xl">The rewards of your career.</h1>
+        <p className="mt-4 max-w-2xl text-cream-dim">BlueBird Rewards is our recognition programme. Earn BlueBird Miles with every flight, and reach the three elite BlueBird tiers through flight hours and event attendance — each unlocking a higher Miles multiplier on events.</p>
       </header>
 
       {/* Tiers */}
-      <section className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+      <section className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {TIERS.map((t, i) => (
-          <div key={t.name} className="rise rounded-2xl border border-obsidian bg-ink-900 p-5 text-center lift" style={{ animationDelay: `${i * 60}ms` }}>
+          <div key={t.name} className="rise rounded-2xl border border-obsidian bg-ink-900 p-6 text-center lift" style={{ animationDelay: `${i * 60}ms` }}>
             <div className="mx-auto h-10 w-10 rounded-full" style={{ background: t.accent }} />
             <h2 className="mt-3 font-display text-lg font-semibold text-cream">{t.name}</h2>
-            <p className="mt-1 text-sm font-medium text-cream-dim">{t.min.toLocaleString()}+ AP</p>
-            <p className="mt-2 text-xs text-cream-faint">{t.blurb}</p>
+            {t.hoursReq ? (
+              <>
+                <p className="mt-2 text-sm font-semibold text-gold">{t.multiplier?.toFixed(1)}× event Miles</p>
+                <ul className="mt-2 space-y-0.5 text-xs text-cream-faint">
+                  <li>{t.hoursReq.toLocaleString()} flight hours</li>
+                  <li>{t.eventsReq} events attended</li>
+                </ul>
+              </>
+            ) : (
+              <p className="mt-2 text-sm text-cream-faint">Every pilot starts here.</p>
+            )}
+            <p className="mt-3 text-xs text-cream-faint">{t.blurb}</p>
           </div>
         ))}
       </section>

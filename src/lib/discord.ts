@@ -160,7 +160,7 @@ export function message(
    Needs (in the server env): DISCORD_BOT_TOKEN (bot with Manage Roles, and its
    role positioned ABOVE the rank roles), DISCORD_GUILD_ID, and
    DISCORD_RANK_ROLES = a JSON map of rank name → role ID, e.g.
-   {"Starter":"123...","Falcon":"456...","Taimi":"789..."}. */
+   {"Cadet":"123...","Falcon":"456...","Taimi":"789..."}. */
 export type RankSyncResult = { configured: boolean; ok?: boolean; reason?: string };
 
 function rankRoleMap(): Record<string, string> {

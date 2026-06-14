@@ -5,7 +5,7 @@ import {
   getFlightRoute,
   getFlightTrack,
 } from "@/lib/infiniteflight";
-import { ROUTES } from "@/lib/routes";
+import { allRoutes } from "@/lib/ops";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -20,10 +20,11 @@ function fleetTok(name: string | null | undefined): string {
 }
 
 /* Kuwaiti route pairs ("DEP|ARR") → the aircraft tokens flown on them. Built
-   once from the route database; a live flight must match one to be shown. */
-const KUWAITI_ROUTES = (() => {
+   per request from the live database (static network + staff-added routes); a
+   live flight must match one to be shown. */
+function buildKuwaitiRoutes(): Map<string, Set<string>> {
   const map = new Map<string, Set<string>>();
-  for (const r of ROUTES) {
+  for (const r of allRoutes()) {
     if (r.airline !== "Kuwaiti") continue;
     const key = `${r.dep.toUpperCase()}|${r.arr.toUpperCase()}`;
     if (!map.has(key)) map.set(key, new Set());
@@ -31,7 +32,7 @@ const KUWAITI_ROUTES = (() => {
     if (tok) map.get(key)!.add(tok);
   }
   return map;
-})();
+}
 
 // Kuwaiti Virtual flights airborne right now (callsign contains "Kuwaiti"),
 // limited to flights whose route is in our database (Expert server only).
@@ -39,6 +40,8 @@ export async function GET() {
   if (!ifConfigured) {
     return Response.json({ configured: false, flights: [] });
   }
+
+  const KUWAITI_ROUTES = buildKuwaitiRoutes();
 
   const [flights, liveries] = await Promise.all([
     getFlightsByCallsignSuffix("KUWAITI"),

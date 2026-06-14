@@ -38,11 +38,11 @@ export function CodeshareManager({ routes, partners }: { routes: Row[]; partners
   return (
     <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
       <form onSubmit={add} className="rounded-2xl border border-obsidian bg-ink-900 p-6">
-        <h2 className="font-display text-xl font-semibold text-cream">Add codeshare route</h2>
-        <p className="mt-1 text-sm text-cream-dim">New routes appear instantly in the pilot route database and Alliance Discover.</p>
+        <h2 className="font-display text-xl font-semibold text-cream">Add a route</h2>
+        <p className="mt-1 text-sm text-cream-dim">New routes appear instantly in the route database, flight finder and live map.</p>
         <div className="mt-5 space-y-4">
-          <div><label className={label}>Partner airline</label>
-            <input list="partners" className={input} value={f.airline} onChange={(e) => set("airline", e.target.value)} placeholder="British Airways" />
+          <div><label className={label}>Airline</label>
+            <input list="partners" className={input} value={f.airline} onChange={(e) => set("airline", e.target.value)} placeholder="Kuwaiti" />
             <datalist id="partners">{partners.map((p) => <option key={p} value={p} />)}</datalist>
           </div>
           <div className="grid gap-4 sm:grid-cols-3">

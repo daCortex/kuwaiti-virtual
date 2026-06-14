@@ -26,12 +26,12 @@
   --color-rose-soft: #2f7aaf;
   --color-obsidian: #d4d9e4; /* borders — stronger for scannability */
 
-  /* Canvas (white-dominant, barely-cool surfaces) */
-  --color-ink-950: #f5f6fa; /* page background — a touch cooler so white cards lift */
+  /* Canvas (white cards over a soft Deep-Sea-Blue-tinted page) */
+  --color-ink-950: #eaf0f8; /* page background — a cool blue wash so white cards lift */
   --color-ink-900: #ffffff; /* cards / surfaces */
-  --color-ink-850: #eef0f6; /* inputs / lighter surfaces */
-  --color-ink-800: #e6e8f1;
-  --color-ink-700: #dadce8;
+  --color-ink-850: #e3ebf5; /* inputs / lighter surfaces */
+  --color-ink-800: #d8e3f1;
+  --color-ink-700: #cbd9ec;
 
   /* Text — tuned for AA contrast on white (body 9:1, meta ~6:1) */
   --color-cream: #14152a; /* primary */

@@ -15,7 +15,7 @@ export type Rank = {
   hours: number; // hour threshold to reach it
   blurb: string;
   group: "core" | "exclusive";
-  apMultiplier?: number; // rank-based Miles bonus (Oryx 1.2×, Sovereign 1.5×)
+  apMultiplier?: number; // rank-based Miles bonus (BlueBird Captain 1.2×, BlueBird Commander 1.5×)
   callsignRange?: string; // unlocked custom callsign range
   perks?: string[];
   // legacy/manual fields kept for the staff Crew Center
@@ -25,14 +25,14 @@ export type Rank = {
 };
 
 export const RANKS: Rank[] = [
-  { n: 1, name: "Starter", hours: 0, group: "core", blurb: "Welcome aboard. Your career begins here in the Middle East.", perks: ["A320neo", "Middle-East region"] },
-  { n: 2, name: "Falcon", hours: 10, group: "core", blurb: "Finding your wings across Asia and Africa.", perks: ["A330-800 · A330-900", "Asia & Africa regions"] },
-  { n: 3, name: "Pearl", hours: 65, group: "core", blurb: "Widebody command and the long sectors to Europe.", perks: ["B777-300ER", "Europe & Africa regions"] },
-  { n: 4, name: "Oasis", hours: 115, group: "core", blurb: "A seasoned hand — the whole fleet opens up.", perks: ["All aircraft", "Career Mode unlocked"] },
-  { n: 5, name: "Mirage", hours: 225, group: "core", blurb: "Master of the global network.", perks: ["All aircraft & routes", "Cargo operations eligible"] },
+  { n: 1, name: "Cadet", hours: 0, group: "core", blurb: "Welcome aboard. Your career begins here in the Middle East.", perks: ["A320neo", "Middle-East region"] },
+  { n: 2, name: "Junior Co-Pilot", hours: 10, group: "core", blurb: "Finding your wings across Asia and Africa.", perks: ["A330-800 · A330-900", "Asia & Africa regions"] },
+  { n: 3, name: "Senior Co-Pilot", hours: 65, group: "core", blurb: "Widebody experience and the long sectors to Europe.", perks: ["B777-300ER", "Europe & Africa regions"] },
+  { n: 4, name: "Captain", hours: 115, group: "core", blurb: "In command — the whole fleet opens up.", perks: ["All aircraft", "Career Mode unlocked"] },
+  { n: 5, name: "Senior Captain", hours: 225, group: "core", blurb: "Master of the global network.", perks: ["All aircraft & routes", "Cargo operations eligible"] },
   // ---- Exclusive ranks (BlueBird Rewards member) ----
-  { n: 6, name: "Oryx", hours: 550, group: "exclusive", apMultiplier: 1.2, callsignRange: "66–85", blurb: "An elite aviator. Special Operations clearance granted.", perks: ["Callsign range 66–85", "1.2× Miles multiplier", "Special Ops access", "Oryx Discord badge"] },
-  { n: 7, name: "Sovereign", hours: 1000, group: "exclusive", apMultiplier: 1.5, callsignRange: "45–65", blurb: "A living legend of Kuwaiti Virtual.", perks: ["Callsign range 45–65", "1.5× Miles multiplier", "BlueBird Rewards eligible", "Sovereign Discord badge"] },
+  { n: 6, name: "BlueBird Captain", hours: 550, group: "exclusive", apMultiplier: 1.2, callsignRange: "66–85", blurb: "An elite aviator. Special Operations clearance granted.", perks: ["Callsign range 66–85", "1.2× Miles multiplier", "Special Ops access", "BlueBird Captain Discord badge"] },
+  { n: 7, name: "BlueBird Commander", hours: 1000, group: "exclusive", apMultiplier: 1.5, callsignRange: "45–65", blurb: "A living legend of Kuwaiti Virtual.", perks: ["Callsign range 45–65", "1.5× Miles multiplier", "BlueBird Rewards eligible", "BlueBird Commander Discord badge"] },
 ];
 
 export type RankProgress = {
@@ -139,7 +139,7 @@ export type ApBreakdown = {
 };
 
 /* Compute AP for a flight. Multipliers stack: punctuality (1.25×), spotlight
-   (2×) and the pilot's rank multiplier (Sovereign 1.2× / Sovereign 1.5×). */
+   (2×) and the pilot's rank multiplier (BlueBird Commander 1.2× / BlueBird Commander 1.5×). */
 export function computeAp(
   minutes: number,
   opts: { punctual?: boolean; spotlight?: boolean; rankMultiplier?: number } = {},
@@ -178,17 +178,23 @@ export function estimateApFromHours(totalHours: number): number {
 
 export type Tier = {
   name: string;
-  min: number; // Miles threshold
+  min: number; // Miles threshold (for the dashboard badge)
   accent: string; // hex for the tier badge
   blurb: string;
+  hoursReq?: number; // flight hours required (BlueBird Rewards)
+  eventsReq?: number; // events attended required
+  multiplier?: number; // event Miles multiplier at this tier
 };
 
+/* BlueBird Rewards — mirrors the original site's programme:
+   Lite 1000h / 5 events / 2.0× · Silver 2500h / 15 events / 2.5× ·
+   Gold 3500h / 20 events / 3.0×. `min` (Miles ≈ hours × 300) drives the
+   dashboard badge so the loyalty badge tracks the same progression. */
 export const TIERS: Tier[] = [
   { name: "Member", min: 0, accent: "#AFAFAF", blurb: "Every journey starts here." },
-  { name: "BlueBird Lite", min: 2500, accent: "#24638E", blurb: "A recognised regular — 2.0× Miles on events." },
-  { name: "BlueBird Silver", min: 50000, accent: "#1F2C56", blurb: "A pillar of Kuwaiti Virtual — 2.5× Miles on events." },
-  { name: "BlueBird Gold", min: 150000, accent: "#C9A24B", blurb: "Among our most decorated aviators — 3.0× Miles on events." },
-  { name: "BlueBird Platinum", min: 500000, accent: "#121212", blurb: "Master aviator — Advisory Board & custom callsign." },
+  { name: "BlueBird Lite", min: 300000, accent: "#24638E", blurb: "A recognised regular of the network.", hoursReq: 1000, eventsReq: 5, multiplier: 2.0 },
+  { name: "BlueBird Silver", min: 750000, accent: "#1F2C56", blurb: "A pillar of Kuwaiti Virtual.", hoursReq: 2500, eventsReq: 15, multiplier: 2.5 },
+  { name: "BlueBird Gold", min: 1050000, accent: "#C9A24B", blurb: "Among our most decorated aviators.", hoursReq: 3500, eventsReq: 20, multiplier: 3.0 },
 ];
 
 export function tierForAp(ap: number): { current: Tier; next: Tier | null; pct: number; apToNext: number | null } {
@@ -241,8 +247,8 @@ export function computeLc(risk: CargoRisk, performance = true): { base: number; 
 /* ======================= GATES ======================= */
 
 export const GATES = {
-  careerMode: "Oasis", // 115h+
-  cargoMode: "Mirage", // 225h+
-  specialOps: "Oryx", // 550h+
-  blueBird: "Sovereign", // 1000h+
+  careerMode: "Captain", // 115h+
+  cargoMode: "Senior Captain", // 225h+
+  specialOps: "BlueBird Captain", // 550h+
+  blueBird: "BlueBird Commander", // 1000h+
 } as const;

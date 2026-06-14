@@ -12,7 +12,7 @@ export default async function CareerPage() {
   const d = await getPilotDashboard();
   if (!d) return null;
   if (!d.gates.career) {
-    return <Locked title="Career Mode" rank="Oasis" hours={115} current={d.totalHours} blurb="Auto-dispatched assignments, the BlueBird Miles economy and licence progression open up once you reach Oasis." />;
+    return <Locked title="Career Mode" rank="Captain" hours={115} current={d.totalHours} blurb="Auto-dispatched assignments, the BlueBird Miles economy and licence progression open up once you reach Captain." />;
   }
 
   const board = getDispatches(d.session.pilotId, { authorizedFleet: d.fleet, rankMultiplier: d.rankMultiplier });

@@ -39,8 +39,8 @@ export function firstFlightNo(r: Route): string {
 /* ---- Ops store (demo): Route of the Week + staff-added codeshare routes ---- */
 const g = globalThis as unknown as { __fnrOps?: { rotwNo: string; extra: Route[] } };
 const store = (g.__fnrOps ??= {
-  // default ROTW: the flagship long-haul to Tokyo
-  rotwNo: "KU441/KU442",
+  // default ROTW: the flagship long-haul to New York
+  rotwNo: "KU117/KU118",
   extra: [], // codeshare routes added by staff in the Crew Center
 });
 store.extra ??= [];

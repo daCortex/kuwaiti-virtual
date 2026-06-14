@@ -71,7 +71,7 @@ export const SITE_HUBS: SiteHub[] = [
 export const SITE_MODES = [
   {
     name: "Casual Mode",
-    unlock: "Starter · 0h",
+    unlock: "Cadet · 0h",
     tagline: "Fly the line at your own pace",
     desc: "The default experience for new pilots. File any unlocked route, log the PIREP, and earn BlueBird Miles without rigid scheduling.",
     bestFor: "Pilots who fly when they can and want progression without pressure",
@@ -81,7 +81,7 @@ export const SITE_MODES = [
   },
   {
     name: "Career Mode",
-    unlock: "Oasis · 115h",
+    unlock: "Captain · 115h",
     tagline: "A structured, simulated career",
     desc: "Bid for monthly rotations, follow a fixed roster, and operate under realistic airline constraints — fatigue, rest and reserve duty all apply.",
     bestFor: "Pilots who want a real-world airline rhythm and faster progression",
@@ -91,7 +91,7 @@ export const SITE_MODES = [
   },
   {
     name: "Cargo Mode",
-    unlock: "Mirage · 225h · application",
+    unlock: "Senior Captain · 225h · application",
     tagline: "Freight, ferry and charter ops",
     desc: "Operate dedicated cargo routes on the A330 and 777 plus freighter ferry legs. Cargo ops run alongside Casual or Career mode, not as a replacement.",
     bestFor: "Senior pilots who want long, technical sectors and unusual routings",

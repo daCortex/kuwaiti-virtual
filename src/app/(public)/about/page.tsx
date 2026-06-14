@@ -8,7 +8,7 @@ export default function AboutPage() {
       <header className="reveal">
         <p className="eyebrow">About</p>
         <h1 className="mt-2 font-display text-4xl font-semibold text-cream lg:text-5xl">A virtual airline built like a real one.</h1>
-        <p className="mt-4 max-w-2xl text-cream-dim">Kuwaiti Virtual operates inside Infinite Flight with real-world airline discipline and structure — a 70-route network from Kuwait City (OKBK), focus cities in Dubai and Jeddah, and a seven-rank path from Starter to Sovereign.</p>
+        <p className="mt-4 max-w-2xl text-cream-dim">Kuwaiti Virtual operates inside Infinite Flight with real-world airline discipline and structure — a 70-route network from Kuwait City (OKBK), focus cities in Dubai and Jeddah, and a seven-rank path from Cadet to BlueBird Commander.</p>
       </header>
 
       {/* How we operate */}
@@ -16,9 +16,9 @@ export default function AboutPage() {
         <h2 className="font-display text-2xl font-semibold text-cream">How we operate</h2>
         <div className="mt-4 grid gap-4 sm:grid-cols-3">
           {[
-            ["Career Mode", "Unlocks at 75 flight hours (Oasis)."],
-            ["Cargo operations", "Eligible from 300 hours (Mirage)."],
-            ["Full fleet access", "Every aircraft unlocked at 600 hours (Mirage)."],
+            ["Career Mode", "Unlocks at 115 flight hours (Captain)."],
+            ["Cargo operations", "Eligible from 225 hours (Senior Captain)."],
+            ["Full fleet access", "Every aircraft unlocked at 115 hours (Captain)."],
           ].map(([k, v]) => (
             <div key={k} className="rounded-2xl border border-obsidian bg-ink-900 p-5 lift">
               <p className="font-medium text-cream">{k}</p>

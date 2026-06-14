@@ -421,6 +421,8 @@ export async function upsertManualPilot(input: {
   rankLabel?: string | null;
   baseMinutes?: number;
   basePireps?: number;
+  status?: PilotStatus;
+  notes?: string | null;
 }): Promise<Pilot> {
   const callsign = input.callsign.trim();
   const discordId = `import:${callsign}`;
@@ -430,22 +432,27 @@ export async function upsertManualPilot(input: {
   const rankLabel = input.rankLabel?.trim() || null;
   const baseMinutes = Math.max(0, Math.round(input.baseMinutes ?? 0));
   const basePireps = Math.max(0, Math.round(input.basePireps ?? 0));
+  const status: PilotStatus = input.status ?? "active";
+  const notes = input.notes?.trim() || null;
+  // Pending applicants are not "accepted" yet.
+  const acceptedAt = status === "pending" ? null : new Date().toISOString();
 
   if (sql) {
     await ensureSchema();
     const rows = await sql`
       INSERT INTO pilots
         (discord_id, callsign, display_name, status, if_username, if_user_id,
-         rank_label, linked, base_minutes, base_pireps, accepted_at)
+         rank_label, linked, base_minutes, base_pireps, notes, accepted_at)
       VALUES
-        (${discordId}, ${callsign}, ${displayName}, 'active', ${ifUsername}, ${ifUserId},
-         ${rankLabel}, false, ${baseMinutes}, ${basePireps}, now())
+        (${discordId}, ${callsign}, ${displayName}, ${status}, ${ifUsername}, ${ifUserId},
+         ${rankLabel}, false, ${baseMinutes}, ${basePireps}, ${notes}, ${acceptedAt})
       ON CONFLICT (discord_id) DO UPDATE SET
         callsign = EXCLUDED.callsign,
         display_name = EXCLUDED.display_name,
         if_username = COALESCE(EXCLUDED.if_username, pilots.if_username),
         if_user_id = COALESCE(EXCLUDED.if_user_id, pilots.if_user_id),
         rank_label = COALESCE(EXCLUDED.rank_label, pilots.rank_label),
+        notes = COALESCE(EXCLUDED.notes, pilots.notes),
         base_minutes = GREATEST(EXCLUDED.base_minutes, pilots.base_minutes),
         base_pireps = GREATEST(EXCLUDED.base_pireps, pilots.base_pireps)
       RETURNING *`;
@@ -459,6 +466,7 @@ export async function upsertManualPilot(input: {
     if (ifUsername) existing.ifUsername = ifUsername;
     if (ifUserId) existing.ifUserId = ifUserId;
     if (rankLabel) existing.rankLabel = rankLabel;
+    if (notes) existing.notes = notes;
     existing.baseMinutes = Math.max(existing.baseMinutes, baseMinutes);
     existing.basePireps = Math.max(existing.basePireps, basePireps);
     return existing;
@@ -470,11 +478,11 @@ export async function upsertManualPilot(input: {
     displayName,
     avatar: null,
     createdAt: new Date().toISOString(),
-    status: "active",
+    status,
     ifUsername,
     ifUserId,
-    acceptedAt: new Date().toISOString(),
-    notes: null,
+    acceptedAt,
+    notes,
     rankLabel,
     linked: false,
     baseMinutes,

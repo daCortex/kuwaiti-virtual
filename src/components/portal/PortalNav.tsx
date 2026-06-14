@@ -20,8 +20,6 @@ export type NavSummary = {
 
 const PRIMARY = [
   { href: "/crew", label: "Dashboard" },
-  { href: "/crew/career", label: "Career" },
-  { href: "/crew/cargo", label: "Cargo" },
   { href: "/crew/routes", label: "Routes" },
   { href: "/crew/map", label: "Live Map" },
   { href: "/crew/logbook", label: "Logbook" },

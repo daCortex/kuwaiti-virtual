@@ -10,9 +10,9 @@ export const metadata = { title: "Special Operations" };
 export const dynamic = "force-dynamic";
 
 const MISSIONS = [
-  { code: "SO-01", name: "Eastern Star", route: "KU441/KU442", brief: "Long-haul flagship run to Tokyo Haneda. Precision required." },
+  { code: "SO-01", name: "Eastern Star", route: "KU415/KU416", brief: "Ultra-long-haul run to Manila. Endurance and precision required." },
   { code: "SO-02", name: "Desert Falcon", route: "KU117/KU118", brief: "Ultra-long-haul to New York — endurance and fuel discipline." },
-  { code: "SO-03", name: "Silk Bridge", route: "KU417/KU418", brief: "The Kuwait City–Singapore corridor — a true test of stamina." },
+  { code: "SO-03", name: "Silk Bridge", route: "KU417/KU418", brief: "The Bangkok–Manila 5th-freedom tag — a true test of stamina." },
   { code: "SO-04", name: "Desert Crown", route: "KU101/KU102", brief: "High-tempo widebody sprint to London Heathrow." },
 ];
 
@@ -20,7 +20,7 @@ export default async function SpecialOpsPage() {
   const d = await getPilotDashboard();
   if (!d) return null;
   if (!d.gates.specialOps) {
-    return <Locked title="Special Operations" rank="Oryx" hours={1200} current={d.totalHours} blurb="Classified high-yield missions for our most elite aviators. Clearance is granted at Oryx." />;
+    return <Locked title="Special Operations" rank="BlueBird Captain" hours={550} current={d.totalHours} blurb="Classified high-yield missions for our most elite aviators. Clearance is granted at BlueBird Captain." />;
   }
 
   const missions = MISSIONS.map((m) => {
@@ -33,7 +33,7 @@ export default async function SpecialOpsPage() {
     <div className="mx-auto max-w-6xl px-5 py-10 lg:px-8">
       <div className="rise overflow-hidden rounded-3xl border border-obsidian">
         <div className="aurora px-6 py-8 lg:px-10">
-          <p className="text-xs uppercase tracking-[0.3em] text-white/55">Clearance · Oryx +</p>
+          <p className="text-xs uppercase tracking-[0.3em] text-white/55">Clearance · BlueBird Captain +</p>
           <h1 className="mt-2 font-display text-4xl font-semibold text-white lg:text-5xl">Special Operations</h1>
           <p className="mt-3 max-w-xl text-white/70">Elite missions carrying maximum multipliers. Fly with precision — these contracts reward the best of Kuwaiti Virtual.</p>
         </div>

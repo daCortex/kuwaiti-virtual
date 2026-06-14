@@ -13,6 +13,38 @@ export type Route = {
 
 export const ROUTES: Route[] = [
   {
+    "routeNumber": "KU611/KU612",
+    "dep": "OKBK",
+    "arr": "OERK",
+    "aircraft": "Kuwaiti Airbus A320neo",
+    "minutes": 90,
+    "airline": "Kuwaiti"
+  },
+  {
+    "routeNumber": "KU615/KU616",
+    "dep": "OKBK",
+    "arr": "OEJN",
+    "aircraft": "Kuwaiti Airbus A321neo",
+    "minutes": 130,
+    "airline": "Kuwaiti"
+  },
+  {
+    "routeNumber": "KU617/KU618",
+    "dep": "OKBK",
+    "arr": "OEMA",
+    "aircraft": "Kuwaiti Airbus A321neo",
+    "minutes": 135,
+    "airline": "Kuwaiti"
+  },
+  {
+    "routeNumber": "KU561/KU562",
+    "dep": "OKBK",
+    "arr": "OEDF",
+    "aircraft": "Kuwaiti Airbus A320neo",
+    "minutes": 65,
+    "airline": "Kuwaiti"
+  },
+  {
     "routeNumber": "KU671/KU672",
     "dep": "OKBK",
     "arr": "OMDB",
@@ -21,11 +53,11 @@ export const ROUTES: Route[] = [
     "airline": "Kuwaiti"
   },
   {
-    "routeNumber": "KU615/KU616",
+    "routeNumber": "KU673/KU674",
     "dep": "OKBK",
-    "arr": "OTHH",
+    "arr": "OMAA",
     "aircraft": "Kuwaiti Airbus A320neo",
-    "minutes": 75,
+    "minutes": 85,
     "airline": "Kuwaiti"
   },
   {
@@ -45,31 +77,7 @@ export const ROUTES: Route[] = [
     "airline": "Kuwaiti"
   },
   {
-    "routeNumber": "KU643/KU644",
-    "dep": "OKBK",
-    "arr": "OEJN",
-    "aircraft": "Kuwaiti Airbus A321neo",
-    "minutes": 130,
-    "airline": "Kuwaiti"
-  },
-  {
-    "routeNumber": "KU611/KU612",
-    "dep": "OKBK",
-    "arr": "OERK",
-    "aircraft": "Kuwaiti Airbus A320neo",
-    "minutes": 90,
-    "airline": "Kuwaiti"
-  },
-  {
-    "routeNumber": "KU561/KU562",
-    "dep": "OKBK",
-    "arr": "OEDF",
-    "aircraft": "Kuwaiti Airbus A320neo",
-    "minutes": 65,
-    "airline": "Kuwaiti"
-  },
-  {
-    "routeNumber": "KU555/KU556",
+    "routeNumber": "KU541/KU542",
     "dep": "OKBK",
     "arr": "OJAI",
     "aircraft": "Kuwaiti Airbus A321neo",
@@ -77,11 +85,19 @@ export const ROUTES: Route[] = [
     "airline": "Kuwaiti"
   },
   {
-    "routeNumber": "KU531/KU532",
+    "routeNumber": "KU551/KU552",
     "dep": "OKBK",
     "arr": "OLBA",
     "aircraft": "Kuwaiti Airbus A321neo",
     "minutes": 175,
+    "airline": "Kuwaiti"
+  },
+  {
+    "routeNumber": "KU525/KU526",
+    "dep": "OKBK",
+    "arr": "ORMM",
+    "aircraft": "Kuwaiti Airbus A320neo",
+    "minutes": 50,
     "airline": "Kuwaiti"
   },
   {
@@ -93,11 +109,51 @@ export const ROUTES: Route[] = [
     "airline": "Kuwaiti"
   },
   {
-    "routeNumber": "KU383/KU384",
+    "routeNumber": "KU663/KU664",
+    "dep": "OKBK",
+    "arr": "OIIE",
+    "aircraft": "Kuwaiti Airbus A320neo",
+    "minutes": 100,
+    "airline": "Kuwaiti"
+  },
+  {
+    "routeNumber": "KU677/KU678",
+    "dep": "OKBK",
+    "arr": "OISS",
+    "aircraft": "Kuwaiti Airbus A320neo",
+    "minutes": 85,
+    "airline": "Kuwaiti"
+  },
+  {
+    "routeNumber": "KU169/KU170",
+    "dep": "OKBK",
+    "arr": "LTFM",
+    "aircraft": "Kuwaiti Airbus A330-300",
+    "minutes": 245,
+    "airline": "Kuwaiti"
+  },
+  {
+    "routeNumber": "KU173/KU174",
+    "dep": "OKBK",
+    "arr": "LTAI",
+    "aircraft": "Kuwaiti Airbus A321neo",
+    "minutes": 250,
+    "airline": "Kuwaiti"
+  },
+  {
+    "routeNumber": "KU543/KU544",
+    "dep": "OKBK",
+    "arr": "HECA",
+    "aircraft": "Kuwaiti Airbus A330-300",
+    "minutes": 170,
+    "airline": "Kuwaiti"
+  },
+  {
+    "routeNumber": "KU381/KU382",
     "dep": "OKBK",
     "arr": "VIDP",
-    "aircraft": "Kuwaiti Airbus A330-900neo",
-    "minutes": 240,
+    "aircraft": "Kuwaiti Airbus A330-300",
+    "minutes": 250,
     "airline": "Kuwaiti"
   },
   {
@@ -105,23 +161,79 @@ export const ROUTES: Route[] = [
     "dep": "OKBK",
     "arr": "VABB",
     "aircraft": "Kuwaiti Airbus A330-300",
-    "minutes": 210,
+    "minutes": 225,
+    "airline": "Kuwaiti"
+  },
+  {
+    "routeNumber": "KU385/KU386",
+    "dep": "OKBK",
+    "arr": "VAAH",
+    "aircraft": "Kuwaiti Airbus A321neo",
+    "minutes": 230,
+    "airline": "Kuwaiti"
+  },
+  {
+    "routeNumber": "KU387/KU388",
+    "dep": "OKBK",
+    "arr": "VOHS",
+    "aircraft": "Kuwaiti Airbus A330-300",
+    "minutes": 270,
+    "airline": "Kuwaiti"
+  },
+  {
+    "routeNumber": "KU383/KU384",
+    "dep": "OKBK",
+    "arr": "VOMM",
+    "aircraft": "Kuwaiti Airbus A330-300",
+    "minutes": 285,
+    "airline": "Kuwaiti"
+  },
+  {
+    "routeNumber": "KU389/KU390",
+    "dep": "OKBK",
+    "arr": "VOCI",
+    "aircraft": "Kuwaiti Airbus A330-300",
+    "minutes": 290,
+    "airline": "Kuwaiti"
+  },
+  {
+    "routeNumber": "KU391/KU392",
+    "dep": "OKBK",
+    "arr": "VOTV",
+    "aircraft": "Kuwaiti Airbus A330-300",
+    "minutes": 300,
+    "airline": "Kuwaiti"
+  },
+  {
+    "routeNumber": "KU351/KU352",
+    "dep": "OKBK",
+    "arr": "OPKC",
+    "aircraft": "Kuwaiti Airbus A320neo",
+    "minutes": 135,
     "airline": "Kuwaiti"
   },
   {
     "routeNumber": "KU357/KU358",
     "dep": "OKBK",
-    "arr": "OPKC",
-    "aircraft": "Kuwaiti Airbus A320neo",
-    "minutes": 150,
+    "arr": "OPLA",
+    "aircraft": "Kuwaiti Airbus A321neo",
+    "minutes": 165,
+    "airline": "Kuwaiti"
+  },
+  {
+    "routeNumber": "KU361/KU362",
+    "dep": "OKBK",
+    "arr": "OPIS",
+    "aircraft": "Kuwaiti Airbus A321neo",
+    "minutes": 165,
     "airline": "Kuwaiti"
   },
   {
     "routeNumber": "KU371/KU372",
     "dep": "OKBK",
-    "arr": "OPLA",
-    "aircraft": "Kuwaiti Airbus A321neo",
-    "minutes": 180,
+    "arr": "VGHS",
+    "aircraft": "Kuwaiti Airbus A330-300",
+    "minutes": 285,
     "airline": "Kuwaiti"
   },
   {
@@ -129,79 +241,31 @@ export const ROUTES: Route[] = [
     "dep": "OKBK",
     "arr": "VCBI",
     "aircraft": "Kuwaiti Airbus A330-300",
-    "minutes": 300,
-    "airline": "Kuwaiti"
-  },
-  {
-    "routeNumber": "KU339/KU340",
-    "dep": "OKBK",
-    "arr": "VGHS",
-    "aircraft": "Kuwaiti Airbus A330-300",
-    "minutes": 270,
-    "airline": "Kuwaiti"
-  },
-  {
-    "routeNumber": "KU417/KU418",
-    "dep": "OKBK",
-    "arr": "WSSS",
-    "aircraft": "Kuwaiti Airbus A330-800neo",
-    "minutes": 420,
+    "minutes": 290,
     "airline": "Kuwaiti"
   },
   {
     "routeNumber": "KU411/KU412",
     "dep": "OKBK",
     "arr": "VTBS",
-    "aircraft": "Kuwaiti Airbus A330-900neo",
-    "minutes": 380,
-    "airline": "Kuwaiti"
-  },
-  {
-    "routeNumber": "KU423/KU424",
-    "dep": "OKBK",
-    "arr": "WMKK",
     "aircraft": "Kuwaiti Airbus A330-800neo",
-    "minutes": 425,
+    "minutes": 395,
     "airline": "Kuwaiti"
   },
   {
-    "routeNumber": "KU437/KU438",
+    "routeNumber": "KU421/KU422",
     "dep": "OKBK",
-    "arr": "VHHH",
+    "arr": "ZGGG",
     "aircraft": "Kuwaiti Airbus A330-900neo",
     "minutes": 480,
     "airline": "Kuwaiti"
   },
   {
-    "routeNumber": "KU441/KU442",
+    "routeNumber": "KU415/KU416",
     "dep": "OKBK",
-    "arr": "RJTT",
-    "aircraft": "Kuwaiti Boeing 777-300ER",
-    "minutes": 600,
-    "airline": "Kuwaiti"
-  },
-  {
-    "routeNumber": "KU541/KU542",
-    "dep": "OKBK",
-    "arr": "HECA",
-    "aircraft": "Kuwaiti Airbus A330-300",
-    "minutes": 240,
-    "airline": "Kuwaiti"
-  },
-  {
-    "routeNumber": "KU567/KU568",
-    "dep": "OKBK",
-    "arr": "HKJK",
+    "arr": "RPLL",
     "aircraft": "Kuwaiti Airbus A330-900neo",
-    "minutes": 330,
-    "airline": "Kuwaiti"
-  },
-  {
-    "routeNumber": "KU571/KU572",
-    "dep": "OKBK",
-    "arr": "HAAB",
-    "aircraft": "Kuwaiti Airbus A330-300",
-    "minutes": 300,
+    "minutes": 560,
     "airline": "Kuwaiti"
   },
   {
@@ -209,15 +273,7 @@ export const ROUTES: Route[] = [
     "dep": "OKBK",
     "arr": "EGLL",
     "aircraft": "Kuwaiti Boeing 777-300ER",
-    "minutes": 425,
-    "airline": "Kuwaiti"
-  },
-  {
-    "routeNumber": "KU175/KU176",
-    "dep": "OKBK",
-    "arr": "LFPG",
-    "aircraft": "Kuwaiti Airbus A330-800neo",
-    "minutes": 410,
+    "minutes": 395,
     "airline": "Kuwaiti"
   },
   {
@@ -225,15 +281,15 @@ export const ROUTES: Route[] = [
     "dep": "OKBK",
     "arr": "EDDF",
     "aircraft": "Kuwaiti Airbus A330-800neo",
-    "minutes": 390,
+    "minutes": 360,
     "airline": "Kuwaiti"
   },
   {
-    "routeNumber": "KU149/KU150",
+    "routeNumber": "KU175/KU176",
     "dep": "OKBK",
-    "arr": "LTFM",
-    "aircraft": "Kuwaiti Airbus A330-300",
-    "minutes": 270,
+    "arr": "LFPG",
+    "aircraft": "Kuwaiti Airbus A330-800neo",
+    "minutes": 375,
     "airline": "Kuwaiti"
   },
   {
@@ -241,23 +297,23 @@ export const ROUTES: Route[] = [
     "dep": "OKBK",
     "arr": "LIRF",
     "aircraft": "Kuwaiti Airbus A330-800neo",
+    "minutes": 330,
+    "airline": "Kuwaiti"
+  },
+  {
+    "routeNumber": "KU167/KU168",
+    "dep": "OKBK",
+    "arr": "LSGG",
+    "aircraft": "Kuwaiti Airbus A330-800neo",
     "minutes": 360,
     "airline": "Kuwaiti"
   },
   {
-    "routeNumber": "KU171/KU172",
+    "routeNumber": "KU187/KU188",
     "dep": "OKBK",
-    "arr": "EHAM",
+    "arr": "LEMD",
     "aircraft": "Kuwaiti Airbus A330-800neo",
-    "minutes": 410,
-    "airline": "Kuwaiti"
-  },
-  {
-    "routeNumber": "KU161/KU162",
-    "dep": "OKBK",
-    "arr": "LGAV",
-    "aircraft": "Kuwaiti Airbus A330-300",
-    "minutes": 300,
+    "minutes": 420,
     "airline": "Kuwaiti"
   },
   {
@@ -265,23 +321,23 @@ export const ROUTES: Route[] = [
     "dep": "OKBK",
     "arr": "KJFK",
     "aircraft": "Kuwaiti Boeing 777-300ER",
-    "minutes": 780,
+    "minutes": 785,
     "airline": "Kuwaiti"
   },
   {
-    "routeNumber": "KU107/KU108",
-    "dep": "OKBK",
-    "arr": "KIAD",
+    "routeNumber": "KU103/KU104",
+    "dep": "EGLL",
+    "arr": "KJFK",
     "aircraft": "Kuwaiti Boeing 777-300ER",
-    "minutes": 800,
+    "minutes": 460,
     "airline": "Kuwaiti"
   },
   {
-    "routeNumber": "KU121/KU122",
-    "dep": "OKBK",
-    "arr": "KORD",
-    "aircraft": "Kuwaiti Boeing 777-300ER",
-    "minutes": 820,
+    "routeNumber": "KU417/KU418",
+    "dep": "VTBS",
+    "arr": "RPLL",
+    "aircraft": "Kuwaiti Airbus A330-800neo",
+    "minutes": 210,
     "airline": "Kuwaiti"
   },
   {
@@ -293,27 +349,11 @@ export const ROUTES: Route[] = [
     "airline": "Qatari"
   },
   {
-    "routeNumber": "QR707/QR708",
-    "dep": "OTHH",
-    "arr": "WSSS",
-    "aircraft": "Qatari Airbus A350-1000",
-    "minutes": 455,
-    "airline": "Qatari"
-  },
-  {
     "routeNumber": "EK856/EK857",
     "dep": "OKBK",
     "arr": "OMDB",
     "aircraft": "Emirates Boeing 777-300ER",
     "minutes": 80,
-    "airline": "Emirates"
-  },
-  {
-    "routeNumber": "EK1/EK2",
-    "dep": "OMDB",
-    "arr": "EGLL",
-    "aircraft": "Emirates Airbus A380",
-    "minutes": 445,
     "airline": "Emirates"
   },
   {
@@ -325,27 +365,11 @@ export const ROUTES: Route[] = [
     "airline": "Saudia"
   },
   {
-    "routeNumber": "WY648/WY649",
-    "dep": "OKBK",
-    "arr": "OOMS",
-    "aircraft": "Oman Air Boeing 737 MAX 8",
-    "minutes": 95,
-    "airline": "Oman Air"
-  },
-  {
-    "routeNumber": "RJ810/RJ811",
-    "dep": "OKBK",
-    "arr": "OJAI",
-    "aircraft": "Royal Jordanian Airbus A320",
-    "minutes": 150,
-    "airline": "Royal Jordanian"
-  },
-  {
     "routeNumber": "MS610/MS611",
     "dep": "OKBK",
     "arr": "HECA",
     "aircraft": "EgyptAir Boeing 737-800",
-    "minutes": 240,
+    "minutes": 170,
     "airline": "EgyptAir"
   },
   {
@@ -353,7 +377,7 @@ export const ROUTES: Route[] = [
     "dep": "OKBK",
     "arr": "LTFM",
     "aircraft": "Turkish Airbus A321neo",
-    "minutes": 270,
+    "minutes": 245,
     "airline": "Turkish"
   },
   {
@@ -363,24 +387,8 @@ export const ROUTES: Route[] = [
     "aircraft": "British Airways Boeing 777-300ER",
     "minutes": 460,
     "airline": "British Airways"
-  },
-  {
-    "routeNumber": "JL44/JL43",
-    "dep": "RJTT",
-    "arr": "KSFO",
-    "aircraft": "Japan Airlines Boeing 777-300ER",
-    "minutes": 575,
-    "airline": "Japan Airlines"
-  },
-  {
-    "routeNumber": "AA2400/AA2401",
-    "dep": "KJFK",
-    "arr": "KDFW",
-    "aircraft": "American Airlines Boeing 737 MAX 8",
-    "minutes": 240,
-    "airline": "American"
   }
 ];
 
 /* Distinct airlines for the route-browser filter (mainline first). */
-export const ROUTE_AIRLINES = ["Kuwaiti","Qatari","Emirates","Saudia","Oman Air","Royal Jordanian","EgyptAir","Turkish","British Airways","Japan Airlines","American"] as const;
+export const ROUTE_AIRLINES = ["Kuwaiti","Qatari","Emirates","Saudia","EgyptAir","Turkish","British Airways"] as const;

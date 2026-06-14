@@ -291,7 +291,7 @@ export const HUBS: Hub[] = [
   },
 ];
 
-// The 7-rank career ladder (Starter → Sovereign) lives in lib/career.ts — the
+// The 7-rank career ladder (Cadet → BlueBird Commander) lives in lib/career.ts — the
 // single source of truth for the Miles economy, licenses and tiers. Re-exported
 // here so existing imports (rank.ts, Crew Center) keep working.
 export { RANKS, type Rank } from "./career";
@@ -299,13 +299,13 @@ import { RANKS as RANK_LIST } from "./career";
 
 // A manual trainee tag staff can assign below the entry rank (not hours-based).
 export const ACRUX_RANK = {
-  name: "Cadet",
+  name: "Trainee",
   hours: 0,
-  note: "Trainee — assigned manually by staff before first solo.",
+  note: "In training — assigned manually by staff before first solo.",
   manual: true,
 } as const;
 
-// The full ladder as displayed (Cadet sits below the entry rank Starter).
+// The full ladder as displayed (Trainee sits below the entry rank Cadet).
 export const RANK_LADDER = [ACRUX_RANK, ...RANK_LIST];
 
 // Every rank label staff can assign in the Crew Center (career ranks + Cadet).

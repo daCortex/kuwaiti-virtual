@@ -18,7 +18,7 @@ export default async function CargoPage() {
   const d = await getPilotDashboard();
   if (!d) return null;
   if (!d.gates.cargo) {
-    return <Locked title="Logistics Command" rank="Mirage" hours={225} current={d.totalHours} blurb="The Cargo track — freight contracts paid in Logistics Credits (LC) — opens at Mirage, the peak of the core ladder." accent="rose" />;
+    return <Locked title="Logistics Command" rank="Senior Captain" hours={225} current={d.totalHours} blurb="The Cargo track — freight contracts paid in Logistics Credits (LC) — opens at Senior Captain, the peak of the core ladder." accent="rose" />;
   }
 
   const cargoHours = 0; // fresh track for this pilot in demo

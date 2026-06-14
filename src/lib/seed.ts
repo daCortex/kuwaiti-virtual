@@ -21,7 +21,7 @@ export const SEED_PILOTS: Pilot[] = [
     ifUserId: null,
     acceptedAt: "2026-01-01T00:00:00.000Z",
     notes: "Founder & Chief Executive Officer.",
-    rankLabel: "Sovereign",
+    rankLabel: "BlueBird Commander",
     linked: false,
     baseMinutes: 0,
     basePireps: 0,
