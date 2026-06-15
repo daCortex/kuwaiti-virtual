@@ -24,7 +24,6 @@ export const PUBLIC_NAV = [
   { href: "/career", label: "Career" },
   { href: "/ranks", label: "Ranks" },
   { href: "/modes", label: "Modes" },
-  { href: "/plus", label: "BlueBird" },
 ] as const;
 
 export type SiteAircraft = {
@@ -48,6 +47,23 @@ export const SITE_FLEET: SiteAircraft[] = [
   { type: "Airbus A330-800neo", pax: 235, cruiseAlt: "41,000 ft", cruiseSpeed: "Mach 0.82", rangeNm: 8150, reg: "9K-CAA", engines: "2 × Rolls-Royce Trent 7000", acquired: 2022, role: "Ultra-efficient neo for thinner long-haul and high-yield routes", routesFlown: 8, family: "Widebody" },
   { type: "Airbus A330-900neo", pax: 260, cruiseAlt: "40,000 ft", cruiseSpeed: "Mach 0.82", rangeNm: 7200, reg: "9K-APA", engines: "2 × Rolls-Royce Trent 7000", acquired: 2021, role: "Next-generation widebody for our Asia and Africa long-haul network", routesFlown: 10, family: "Widebody" },
   { type: "Boeing 777-300ER", pax: 348, cruiseAlt: "35,000 ft", cruiseSpeed: "Mach 0.84", rangeNm: 7370, reg: "9K-AOC", engines: "2 × GE90-115B", acquired: 2016, role: "Long-haul flagship to Europe and North America", routesFlown: 14, family: "Widebody" },
+];
+
+export type HistoricAircraft = {
+  type: string;
+  reg: string;
+  pax: number;
+  engines: string;
+  years: string; // service span, e.g. "1981 – 2014"
+  role: string;
+  family: "Regional" | "Narrowbody" | "Widebody";
+};
+
+/* Retired types once operated by the airline. */
+export const SITE_FLEET_HISTORIC: HistoricAircraft[] = [
+  { type: "McDonnell Douglas DC-10-30", reg: "9K-DCA", pax: 255, engines: "3 × GE CF6-50C2", years: "1981 – 1998", role: "First-generation long-haul widebody on European and Asian routes", family: "Widebody" },
+  { type: "Boeing 777-200ER", reg: "9K-AOA", pax: 280, engines: "2 × GE90-94B", years: "2007 – 2017", role: "Long-haul workhorse before the 777-300ER took over", family: "Widebody" },
+  { type: "Boeing 747-400", reg: "9K-ADE", pax: 379, engines: "4 × PW4056", years: "1994 – 2005", role: "The Queen of the Skies — flagship on the highest-demand long-haul routes", family: "Widebody" },
 ];
 
 export type SiteHub = {
@@ -85,19 +101,9 @@ export const SITE_MODES = [
     tagline: "A structured, simulated career",
     desc: "Bid for monthly rotations, follow a fixed roster, and operate under realistic airline constraints — fatigue, rest and reserve duty all apply.",
     bestFor: "Pilots who want a real-world airline rhythm and faster progression",
-    pros: ["Higher Miles earn rate", "Counts double toward rank", "Eligible for command upgrade pathway"],
+    pros: ["Faster rank progression", "Counts double toward rank", "Eligible for command upgrade pathway"],
     multiplier: "1.25×",
     scope: "Rostered",
-  },
-  {
-    name: "Cargo Mode",
-    unlock: "Senior Captain · 225h · application",
-    tagline: "Freight, ferry and charter ops",
-    desc: "Operate dedicated cargo routes on the A330 and 777 plus freighter ferry legs. Cargo ops run alongside Casual or Career mode, not as a replacement.",
-    bestFor: "Senior pilots who want long, technical sectors and unusual routings",
-    pros: ["Exclusive long-haul cargo network", "Bonus Miles on tech-stop / ferry legs", "Higher the risk, higher the reward!"],
-    multiplier: "Bonus",
-    scope: "Freight network",
   },
 ] as const;
 

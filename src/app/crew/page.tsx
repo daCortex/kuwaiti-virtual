@@ -1,10 +1,8 @@
 import Link from "next/link";
 import { getPilotDashboard, fmtHours, fmtDate, timeAgo } from "@/lib/portal";
-import { computeAp } from "@/lib/career";
-import { getRotw, getSpotlightRoutes, isSpotlight, firstFlightNo } from "@/lib/ops";
+import { getRotw, getSpotlightRoutes, firstFlightNo } from "@/lib/ops";
 import { listNews } from "@/lib/db";
 import { airportCity } from "@/lib/airports";
-import { CountUp } from "@/components/portal/CountUp";
 
 export const dynamic = "force-dynamic";
 
@@ -20,10 +18,9 @@ export default async function Dashboard() {
     );
   }
 
-  const { rank, tier, license } = d;
+  const { rank, license } = d;
   const rotw = getRotw();
   const spotlights = getSpotlightRoutes();
-  const rotwAp = computeAp(rotw.minutes, { spotlight: isSpotlight(rotw.routeNumber), rankMultiplier: d.rankMultiplier }).net;
   const firstName = d.session.displayName.split(" ")[0];
   const events = (await listNews(4)).filter((e) => e.category !== "Route of the Week").slice(0, 2);
 
@@ -39,19 +36,11 @@ export default async function Dashboard() {
               <h1 className="mt-2 font-display text-4xl font-semibold tracking-tight text-white lg:text-5xl">{firstName}</h1>
               <div className="mt-3 flex flex-wrap items-center gap-2">
                 <span className="inline-flex items-center gap-1.5 rounded-full bg-white/12 px-3 py-1 text-sm font-medium text-white">
-                  <span className="h-2 w-2 rounded-full" style={{ background: tier.current.accent }} />
+                  <span className="h-2 w-2 rounded-full bg-white/70" />
                   Rank {rank.current.n} · {rank.current.name}
                 </span>
                 <span className="rounded-full border border-white/25 px-3 py-1 text-sm text-white/80">{license.current.short} licence</span>
               </div>
-            </div>
-            <div className="shrink-0 rounded-2xl bg-white/8 px-6 py-5 ring-1 ring-white/15 backdrop-blur-sm">
-              <p className="text-xs uppercase tracking-[0.2em] text-white/55">BlueBird Miles · {tier.current.name}</p>
-              <p className="mt-1 flex items-baseline gap-2">
-                <span className="text-2xl text-rose-soft">✦</span>
-                <CountUp value={d.apBalance} className="tnum font-display text-4xl font-semibold text-white lg:text-5xl" />
-              </p>
-              <p className="mt-1 text-xs text-white/60">{tier.next ? `${tier.apToNext!.toLocaleString()} AP to ${tier.next.name}` : "Top tier achieved ✦"}</p>
             </div>
           </div>
           {/* rank progress */}
@@ -95,13 +84,7 @@ export default async function Dashboard() {
               <div className="font-display text-2xl font-semibold text-cream sm:text-3xl">{airportCity(rotw.dep)} <span className="text-gold">→</span> {airportCity(rotw.arr)}</div>
               <p className="mt-1.5 text-sm text-cream-faint">{firstFlightNo(rotw)} · {rotw.aircraft.replace(/^Kuwaiti /, "")} · {fmtHours(rotw.minutes)}</p>
             </div>
-            <div className="flex items-center gap-5">
-              <div className="text-right">
-                <p className="text-xs uppercase tracking-wide text-cream-faint">Reward</p>
-                <p className="font-display text-xl font-semibold text-cream">✦ {rotwAp.toLocaleString()}</p>
-              </div>
-              <Link href="/crew/file" className="rounded-full bg-gold px-5 py-2.5 text-sm font-medium text-white transition-all hover:brightness-125">Fly it</Link>
-            </div>
+            <Link href="/crew/file" className="shrink-0 rounded-full bg-gold px-5 py-2.5 text-sm font-medium text-white transition-all hover:brightness-125">Fly it</Link>
           </div>
         </div>
       </section>

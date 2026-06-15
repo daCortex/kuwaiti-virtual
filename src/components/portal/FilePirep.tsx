@@ -2,7 +2,13 @@
 
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import { computeAp, categoryForMinutes, AP_TABLE } from "@/lib/career";
+import { categoryForMinutes } from "@/lib/career";
+
+const CAT_LABEL: Record<string, string> = {
+  regional: "Regional (<2h)",
+  continental: "Continental (2–6h)",
+  longhaul: "Long-Haul (>6h)",
+};
 
 type Group = { group: string; items: string[] };
 type Mult = { code: string; value: number; label: string };
@@ -12,11 +18,9 @@ const SERVERS = ["Expert", "Training", "Casual"];
 export function FilePirep({
   groups,
   multipliers,
-  rankMultiplier,
 }: {
   groups: Group[];
   multipliers: Mult[];
-  rankMultiplier: number;
 }) {
   const router = useRouter();
   const [f, setF] = useState({
@@ -29,11 +33,8 @@ export function FilePirep({
   const set = (k: string, v: string | boolean) => setF((s) => ({ ...s, [k]: v }));
 
   const rawMin = (Number(f.hours) || 0) * 60 + (Number(f.minutes) || 0);
-  const ap = useMemo(() => {
-    if (rawMin <= 0) return null;
-    return computeAp(rawMin, { punctual: f.punctual, rankMultiplier });
-  }, [rawMin, f.punctual, rankMultiplier]);
-  const cat = rawMin > 0 ? categoryForMinutes(rawMin) : null;
+  const cat = useMemo(() => (rawMin > 0 ? categoryForMinutes(rawMin) : null), [rawMin]);
+  const durLabel = rawMin > 0 ? `${Math.floor(rawMin / 60)}h ${(rawMin % 60).toString().padStart(2, "0")}m` : "—";
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
@@ -87,35 +88,33 @@ export function FilePirep({
         <div><label className={label}>Remarks</label><textarea className={`${input} min-h-[80px]`} placeholder="Anything notable about the flight…" value={f.remarks} onChange={(e) => set("remarks", e.target.value)} /></div>
         <label className="flex items-center gap-2.5 text-sm text-cream-dim">
           <input type="checkbox" checked={f.punctual} onChange={(e) => set("punctual", e.target.checked)} className="h-4 w-4 accent-[var(--color-gold)]" />
-          Filed within the punctuality window (+25% AP)
+          Filed within the punctuality window
         </label>
         {error && <p className="rounded-xl bg-rose-500/10 px-3 py-2 text-sm text-rose-500">{error}</p>}
       </div>
 
-      {/* AP preview */}
+      {/* Flight summary */}
       <div className="space-y-4">
         <div className="overflow-hidden rounded-2xl border border-obsidian">
           <div className="aurora px-5 py-5 text-white">
-            <p className="text-xs uppercase tracking-[0.2em] text-white/55">Estimated reward</p>
-            <p className="mt-1 flex items-baseline gap-2">
-              <span className="text-2xl text-rose-soft">✦</span>
-              <span className="tnum font-display text-4xl font-semibold">{ap ? ap.net.toLocaleString() : "—"}</span>
-              <span className="text-sm text-white/60">AP</span>
+            <p className="text-xs uppercase tracking-[0.2em] text-white/55">Flight summary</p>
+            <p className="mt-1 font-display text-2xl font-semibold">
+              {f.dep && f.arr ? `${f.dep.toUpperCase()} → ${f.arr.toUpperCase()}` : "—"}
             </p>
-            {cat && <p className="mt-1 text-xs text-white/60">{AP_TABLE[cat].label} · base ✦{AP_TABLE[cat].net.toLocaleString()}</p>}
+            <p className="mt-1 text-sm text-white/60">{f.flightNo ? f.flightNo.toUpperCase() : "Flight"} · {durLabel}</p>
           </div>
           <div className="space-y-2 bg-ink-900 px-5 py-4 text-sm">
-            <Row k="Category" v={cat ? AP_TABLE[cat].label : "—"} />
-            <Row k="Base net AP" v={ap ? `✦ ${ap.base.toLocaleString()}` : "—"} />
-            <Row k="Punctuality" v={f.punctual ? "×1.25" : "—"} dim={!f.punctual} />
-            {rankMultiplier > 1 && <Row k="Rank bonus" v={`×${rankMultiplier}`} />}
-            <div className="mt-1 border-t border-obsidian/60 pt-2"><Row k="Total" v={ap ? `✦ ${ap.net.toLocaleString()}` : "—"} strong /></div>
+            <Row k="Category" v={cat ? CAT_LABEL[cat] : "—"} />
+            <Row k="Duration" v={durLabel} />
+            <Row k="Aircraft" v={f.aircraft || "—"} />
+            <Row k="Server" v={f.server} />
+            <div className="mt-1 border-t border-obsidian/60 pt-2"><Row k="Counts toward rank" v={rawMin > 0 ? durLabel : "—"} strong /></div>
           </div>
         </div>
-        <button type="submit" disabled={busy} className="w-full rounded-full bg-gold px-6 py-3.5 text-sm font-semibold text-white shadow-[0_10px_30px_-12px_rgba(31, 44, 86,0.9)] transition-all hover:brightness-125 disabled:opacity-60">
+        <button type="submit" disabled={busy} className="w-full rounded-full bg-gold px-6 py-3.5 text-sm font-semibold text-white shadow-[0_10px_30px_-12px_rgba(31,44,86,0.9)] transition-all hover:brightness-125 disabled:opacity-60">
           {busy ? "Filing…" : "Submit PIREP"}
         </button>
-        <p className="text-center text-xs text-cream-faint">Spotlight (2×) bonuses apply automatically to qualifying sectors after review.</p>
+        <p className="text-center text-xs text-cream-faint">Approved hours count toward your rank progression.</p>
       </div>
     </form>
   );

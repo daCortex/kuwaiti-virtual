@@ -25,7 +25,7 @@ const VALUES = [
   { tag: "Career Ranks", title: "Seven ranks. One ascent.", body: "Climb from Cadet to BlueBird Commander across 1,000 hours of structured progression.", href: "/ranks" },
   { tag: "Career Mode", title: "Every flight, credited.", body: "Log hours across seven aircraft and 70 routes — your record follows you.", href: "/career" },
   { tag: "Leadership", title: "A crew built on precision.", body: "A real org structure — Founder, CEO, Board and four staff units.", href: "/about" },
-  { tag: "BlueBird Banking", title: "An economy that rewards.", body: "Earn BlueBird Miles with every flight and rise through BlueBird Rewards.", href: "/plus" },
+  { tag: "The Fleet", title: "Six aircraft, one livery.", body: "A modern Airbus & Boeing fleet — from the A320neo to the 777-300ER flagship.", href: "/fleet" },
 ];
 
 export default function Home() {
@@ -80,11 +80,27 @@ export default function Home() {
       </section>
 
       {/* CTA */}
-      <section className="mx-auto max-w-7xl px-5 pb-24 lg:px-8">
+      <section className="mx-auto max-w-7xl px-5 pb-16 lg:px-8">
         <div className="aurora flex flex-col items-center gap-5 rounded-3xl px-6 py-14 text-center">
           <h2 className="font-display text-3xl font-semibold text-white lg:text-4xl">Your career starts at Cadet.</h2>
-          <p className="max-w-md text-white/70">Join a community of pilots committed to realism, excellence, and Arabian precision.</p>
+          <p className="max-w-md text-white/70">Join a community of pilots committed to professionalism, realism, and true Arabian hospitality.</p>
           <Link href="/join" className="rounded-full bg-white px-7 py-3 text-sm font-semibold text-fin-blue transition-transform hover:scale-[1.03]">Apply to Kuwaiti Virtual</Link>
+        </div>
+      </section>
+
+      {/* CLOSING AIRCRAFT BAND
+          Drop a real photo at public/brand/aircraft.jpg and it appears behind
+          the overlay automatically (the gradient shows until then). */}
+      <section className="relative mt-4 flex min-h-[320px] items-end overflow-hidden lg:min-h-[440px]"
+        style={{
+          backgroundImage:
+            "linear-gradient(180deg, rgba(31,44,86,0.15) 0%, rgba(31,44,86,0.75) 100%), linear-gradient(135deg, #1f2c56 0%, #20406d 55%, #24638e 100%), url('/brand/aircraft.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}>
+        <div className="relative mx-auto w-full max-w-7xl px-5 pb-12 lg:px-8 lg:pb-16">
+          <p className="text-xs uppercase tracking-[0.32em] text-white/60">Kuwaiti Virtual</p>
+          <p className="mt-2 max-w-xl font-display text-3xl font-semibold text-white lg:text-4xl">True Arabian hospitality, in the virtual skies.</p>
         </div>
       </section>
     </div>

@@ -96,17 +96,6 @@ export function PortalNav({ summary }: { summary: NavSummary | null }) {
         </nav>
 
         <div className="ml-auto flex items-center gap-2.5">
-          {/* AP chip */}
-          {summary && (
-            <Link href="/crew/logbook"
-              className="hidden items-center gap-1.5 rounded-full border border-obsidian bg-ink-900 px-3 py-1.5 text-sm lift sm:inline-flex"
-              title="BlueBird Miles balance">
-              <span className="shine font-semibold">✦</span>
-              <span className="tnum font-semibold text-cream">{summary.apCompact}</span>
-              <span className="text-xs text-cream-faint">AP</span>
-            </Link>
-          )}
-
           {/* File PIREP */}
           <Link href="/crew/file"
             className="hidden rounded-full bg-gold px-4 py-2 text-sm font-medium text-white shadow-[0_8px_24px_-10px_rgba(31, 44, 86,0.8)] transition-all hover:brightness-125 sm:inline-flex">
@@ -121,8 +110,7 @@ export function PortalNav({ summary }: { summary: NavSummary | null }) {
               <button onClick={() => setMenu((v) => !v)}
                 className="flex items-center gap-2 rounded-full border border-obsidian bg-ink-900 py-1 pl-1 pr-2.5 lift"
                 aria-label="Profile menu">
-                <span className="flex h-7 w-7 items-center justify-center rounded-full text-[0.7rem] font-semibold text-white"
-                  style={{ background: summary.tierAccent }}>{initials}</span>
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-gold text-[0.7rem] font-semibold text-white">{initials}</span>
                 <span className="hidden text-xs font-medium text-cream-dim md:inline">{summary.rankName}</span>
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" className="text-cream-faint"><path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
               </button>
@@ -132,8 +120,7 @@ export function PortalNav({ summary }: { summary: NavSummary | null }) {
                     <p className="text-sm font-semibold text-cream">{summary.callsign}</p>
                     <p className="text-xs text-cream-faint">{summary.displayName}</p>
                     <div className="mt-2 flex items-center gap-1.5">
-                      <span className="rounded-full px-2 py-0.5 text-[0.65rem] font-semibold text-white" style={{ background: summary.tierAccent }}>{summary.tierName}</span>
-                      <span className="rounded-full border border-obsidian px-2 py-0.5 text-[0.65rem] text-cream-dim">{summary.rankName}</span>
+                      <span className="rounded-full bg-gold px-2 py-0.5 text-[0.65rem] font-semibold text-white">{summary.rankName}</span>
                     </div>
                   </div>
                   <div className="py-1.5">

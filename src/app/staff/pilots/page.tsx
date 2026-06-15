@@ -1,8 +1,7 @@
 import { listRoster } from "@/lib/db";
 import { RANK_NAMES } from "@/lib/data";
 import { rankFromMinutes, formatDuration } from "@/lib/rank";
-import { estimateApFromHours, licenseForHours, tierForAp } from "@/lib/career";
-import { fmtApCompact } from "@/lib/portal";
+import { licenseForHours } from "@/lib/career";
 import { CrewPilotActions } from "@/components/CrewPilotActions";
 import { LinkDiscord } from "@/components/LinkDiscord";
 import { SetRank } from "@/components/SetRank";
@@ -39,7 +38,7 @@ export default async function CrewPilots() {
               <th className="px-5 py-4 font-normal">Rank</th>
               <th className="px-5 py-4 font-normal text-right">Hours</th>
               <th className="px-5 py-4 font-normal text-right">Flights</th>
-              <th className="px-5 py-4 font-normal">Miles · Licence</th>
+              <th className="px-5 py-4 font-normal">Licence</th>
               <th className="px-5 py-4 font-normal">Status</th>
               <th className="px-5 py-4 font-normal">Discord</th>
               <th className="px-5 py-4 font-normal text-right">Actions</th>
@@ -49,9 +48,7 @@ export default async function CrewPilots() {
             {roster.map(({ pilot, minutes, approved }) => {
               const derived = rankFromMinutes(minutes).current.name;
               const hours = minutes / 60;
-              const ap = estimateApFromHours(hours);
               const lic = licenseForHours(hours).current.short;
-              const tier = tierForAp(ap).current;
               return (
                 <tr key={pilot.id} className="border-b border-obsidian/30 last:border-0 hover:bg-ink-850">
                   <td className="px-5 py-4">
@@ -82,11 +79,7 @@ export default async function CrewPilots() {
                   </td>
                   <td className="px-5 py-4 text-right text-cream-dim">{approved}</td>
                   <td className="px-5 py-4">
-                    <span className="font-medium text-cream">✦ {fmtApCompact(ap)}</span>
-                    <span className="mt-0.5 flex items-center gap-1.5 text-[0.7rem] text-cream-faint">
-                      <span className="h-2 w-2 rounded-full" style={{ background: tier.accent }} />
-                      {lic} · {tier.name}
-                    </span>
+                    <span className="font-medium text-cream">{lic}</span>
                   </td>
                   <td className="px-5 py-4">
                     <span className={`rounded-full border px-2.5 py-0.5 text-[0.65rem] uppercase tracking-wider ${STATUS_STYLE[pilot.status]}`}>

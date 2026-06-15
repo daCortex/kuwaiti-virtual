@@ -14,7 +14,6 @@ export type EnrichedRoute = {
   minutes: number;
   airline: string;
   category: "regional" | "continental" | "longhaul";
-  ap: number;
   spotlight: boolean;
   rotw: boolean;
 };
@@ -34,7 +33,7 @@ export function RouteFinder({ routes, airlines }: { routes: EnrichedRoute[]; air
   const [q, setQ] = useState("");
   const [cat, setCat] = useState("all");
   const [airline, setAirline] = useState("All");
-  const [sort, setSort] = useState<"ap" | "dur" | "az">("ap");
+  const [sort, setSort] = useState<"dur" | "az">("dur");
 
   const filtered = useMemo(() => {
     const needle = q.trim().toLowerCase();
@@ -52,7 +51,7 @@ export function RouteFinder({ routes, airlines }: { routes: EnrichedRoute[]; air
       );
     });
     r = [...r].sort((a, b) =>
-      sort === "ap" ? b.ap - a.ap : sort === "dur" ? a.minutes - b.minutes : a.arrCity.localeCompare(b.arrCity),
+      sort === "dur" ? a.minutes - b.minutes : a.arrCity.localeCompare(b.arrCity),
     );
     return r;
   }, [routes, q, cat, airline, sort]);
@@ -76,8 +75,7 @@ export function RouteFinder({ routes, airlines }: { routes: EnrichedRoute[]; air
             <select value={airline} onChange={(e) => setAirline(e.target.value)} className="rounded-xl border border-obsidian bg-ink-850 px-3 py-2 text-xs text-cream-dim outline-none focus:border-gold">
               {airlines.map((a) => <option key={a}>{a}</option>)}
             </select>
-            <select value={sort} onChange={(e) => setSort(e.target.value as "ap" | "dur" | "az")} className="rounded-xl border border-obsidian bg-ink-850 px-3 py-2 text-xs text-cream-dim outline-none focus:border-gold">
-              <option value="ap">Top AP</option>
+            <select value={sort} onChange={(e) => setSort(e.target.value as "dur" | "az")} className="rounded-xl border border-obsidian bg-ink-850 px-3 py-2 text-xs text-cream-dim outline-none focus:border-gold">
               <option value="dur">Shortest</option>
               <option value="az">A–Z</option>
             </select>
@@ -104,7 +102,7 @@ export function RouteFinder({ routes, airlines }: { routes: EnrichedRoute[]; air
             </div>
             <div className="mt-3 flex items-center justify-between border-t border-obsidian/60 pt-3">
               <span className="text-xs text-cream-faint">{fmt(r.minutes)}</span>
-              <span className="text-sm font-semibold text-cream">✦ {r.ap.toLocaleString()}</span>
+              <span className="text-xs uppercase tracking-wide text-cream-faint">{r.category === "regional" ? "Regional" : r.category === "continental" ? "Continental" : "Long-haul"}</span>
             </div>
           </div>
         ))}

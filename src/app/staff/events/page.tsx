@@ -30,11 +30,11 @@ export default async function CrewEventsPage() {
           <div className="mt-4"><RotwManager current={current.routeNumber} options={options} /></div>
         </div>
         <div className="rounded-2xl border border-obsidian bg-ink-900 p-6">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-rose">2× Spotlight · this week</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-rose">Featured · this week</p>
           <ul className="mt-3 flex flex-wrap gap-2">
             {spotlights.map((s) => <li key={s.routeNumber} className="rounded-full bg-rose/10 px-3 py-1 text-sm text-rose">{airportCity(s.dep)} → {airportCity(s.arr)}</li>)}
           </ul>
-          <p className="mt-3 text-xs text-cream-faint">Auto-rotated 1–3× per week. Double BlueBird Miles on these sectors.</p>
+          <p className="mt-3 text-xs text-cream-faint">Auto-rotated 1–3× per week — the spotlight sectors to promote.</p>
         </div>
       </div>
 

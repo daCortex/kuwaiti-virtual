@@ -22,9 +22,9 @@ export default async function FilePage() {
       <header className="rise mb-6">
         <p className="eyebrow">Pilot report</p>
         <h1 className="mt-2 font-display text-4xl font-semibold text-cream">File a PIREP</h1>
-        <p className="mt-3 max-w-2xl text-cream-dim">Log a completed flight. Approved reports credit toward your hours, rank and BlueBird Miles balance.</p>
+        <p className="mt-3 max-w-2xl text-cream-dim">Log a completed flight. Approved reports credit toward your hours and rank progression.</p>
       </header>
-      <FilePirep groups={AIRCRAFT_GROUPS} multipliers={MULTIPLIERS} rankMultiplier={d.rankMultiplier} />
+      <FilePirep groups={AIRCRAFT_GROUPS} multipliers={MULTIPLIERS} />
     </div>
   );
 }

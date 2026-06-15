@@ -1,7 +1,5 @@
 import Link from "next/link";
-import { getPilotDashboard, fmtHours, fmtDate, fmtAp } from "@/lib/portal";
-import { computeAp, AP_TABLE } from "@/lib/career";
-import { isSpotlight } from "@/lib/ops";
+import { getPilotDashboard, fmtHours, fmtDate } from "@/lib/portal";
 
 export const metadata = { title: "Logbook" };
 export const dynamic = "force-dynamic";
@@ -10,16 +8,9 @@ export default async function LogbookPage() {
   const d = await getPilotDashboard();
   if (!d) return <Empty />;
 
-  const rows = d.filedPireps.map((p) => {
-    const ap = computeAp(p.minutes, {
-      spotlight: isSpotlight(`${p.flightNo}`),
-      rankMultiplier: d.rankMultiplier,
-    });
-    return { p, ap };
-  });
-  const earned = rows.filter((r) => r.p.status === "approved").reduce((s, r) => s + r.ap.net, 0);
-  const approved = d.filedPireps.filter((p) => p.status === "approved").length;
-  const pending = d.filedPireps.filter((p) => p.status === "pending").length;
+  const rows = d.filedPireps;
+  const approved = rows.filter((p) => p.status === "approved").length;
+  const pending = rows.filter((p) => p.status === "pending").length;
 
   return (
     <div className="mx-auto max-w-6xl px-5 py-10 lg:px-8">
@@ -34,8 +25,8 @@ export default async function LogbookPage() {
       {/* summary */}
       <div className="mt-6 grid gap-4 sm:grid-cols-4">
         {[
-          { l: "Lifetime AP", v: `✦ ${fmtAp(d.apBalance)}` },
           { l: "Flight time", v: fmtHours(d.totalMinutes) },
+          { l: "Current rank", v: d.rank.current.name },
           { l: "PIREPs filed", v: d.totalPireps.toLocaleString() },
           { l: "Approved / pending", v: `${approved} / ${pending}` },
         ].map((c, i) => (
@@ -48,33 +39,27 @@ export default async function LogbookPage() {
 
       {/* table */}
       <div className="mt-6 overflow-hidden rounded-2xl border border-obsidian bg-ink-900">
-        <div className="hidden grid-cols-[1.4fr_1fr_0.8fr_0.8fr_0.9fr] gap-4 border-b border-obsidian/70 px-6 py-3 text-xs uppercase tracking-wide text-cream-faint md:grid">
-          <span>Route</span><span>Aircraft</span><span>Time</span><span>AP earned</span><span className="text-right">Status</span>
+        <div className="hidden grid-cols-[1.6fr_1.2fr_0.8fr_0.9fr] gap-4 border-b border-obsidian/70 px-6 py-3 text-xs uppercase tracking-wide text-cream-faint md:grid">
+          <span>Route</span><span>Aircraft</span><span>Time</span><span className="text-right">Status</span>
         </div>
         {rows.length === 0 ? (
           <p className="px-6 py-10 text-center text-sm text-cream-faint">No flights filed yet. <Link href="/crew/file" className="text-gold">File your first PIREP →</Link></p>
         ) : (
           <ul className="divide-y divide-obsidian/60">
-            {rows.map(({ p, ap }) => (
-              <li key={p.id} className="grid grid-cols-2 items-center gap-3 px-6 py-3.5 transition-colors hover:bg-ink-850 md:grid-cols-[1.4fr_1fr_0.8fr_0.8fr_0.9fr] md:gap-4">
+            {rows.map((p) => (
+              <li key={p.id} className="grid grid-cols-2 items-center gap-3 px-6 py-3.5 transition-colors hover:bg-ink-850 md:grid-cols-[1.6fr_1.2fr_0.8fr_0.9fr] md:gap-4">
                 <div>
                   <p className="font-mono text-sm font-medium text-cream">{p.dep} → {p.arr}</p>
                   <p className="text-xs text-cream-faint">{p.flightNo} · {fmtDate(p.filedAt)}</p>
                 </div>
                 <span className="hidden text-sm text-cream-dim md:block">{p.aircraft}</span>
                 <span className="hidden text-sm text-cream-dim md:block">{fmtHours(p.minutes)}</span>
-                <span className="text-sm font-semibold text-cream md:text-left">{p.status === "approved" ? `✦ ${ap.net.toLocaleString()}` : "—"}</span>
                 <span className="text-right"><StatusPill status={p.status} /></span>
               </li>
             ))}
           </ul>
         )}
       </div>
-
-      {/* AP reference */}
-      <p className="mt-4 text-xs text-cream-faint">
-        AP table — Regional &lt;2h: ✦{AP_TABLE.regional.net} · Continental 2–6h: ✦{AP_TABLE.continental.net.toLocaleString()} · Long-haul &gt;6h: ✦{AP_TABLE.longhaul.net.toLocaleString()} net. Punctual filing ×1.25, spotlight ×2{d.rankMultiplier > 1 ? `, your rank ×${d.rankMultiplier}` : ""}.
-      </p>
     </div>
   );
 }

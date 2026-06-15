@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { getPilotDashboard, fmtHours } from "@/lib/portal";
-import { computeAp } from "@/lib/career";
 import { firstFlightNo, allRoutes } from "@/lib/ops";
 import { airportCity } from "@/lib/airports";
 import { Locked } from "@/components/portal/Locked";
@@ -15,17 +14,14 @@ export default async function DiscoverPage() {
     return <Locked title="Alliance Discover" rank="BlueBird Commander" hours={1000} current={d.totalHours} blurb="Explore the wider partner alliance — partner metal on codeshare sectors across the globe. Reserved for BlueBird Commander aviators." accent="rose" />;
   }
 
-  const routes = allRoutes().filter((r) => r.airline !== "Kuwaiti").map((r) => ({
-    ...r,
-    ap: computeAp(r.minutes, { rankMultiplier: d.rankMultiplier }).net,
-  }));
+  const routes = allRoutes().filter((r) => r.airline !== "Kuwaiti");
 
   return (
     <div className="mx-auto max-w-7xl px-5 py-10 lg:px-8">
       <header className="rise">
         <p className="eyebrow" style={{ color: "var(--color-rose)" }}>BlueBird Commander privilege</p>
         <h1 className="mt-2 font-display text-4xl font-semibold text-cream">Alliance Discover</h1>
-        <p className="mt-2 max-w-xl text-cream-dim">Fly partner metal across the alliance network. {routes.length} codeshare sectors, AP credited to your Kuwaiti Virtual account.</p>
+        <p className="mt-2 max-w-xl text-cream-dim">Fly partner metal across the alliance network — {routes.length} codeshare sectors logged to your Kuwaiti Virtual record.</p>
       </header>
 
       <div className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -39,7 +35,7 @@ export default async function DiscoverPage() {
             <p className="text-xs text-cream-faint">{r.aircraft.replace(/^[A-Za-z ]+Airlines? /, "")}</p>
             <div className="mt-3 flex items-center justify-between border-t border-obsidian/60 pt-3">
               <span className="text-xs text-cream-faint">{fmtHours(r.minutes)}</span>
-              <span className="text-sm font-semibold text-cream">✦ {r.ap.toLocaleString()}</span>
+              <span className="text-xs uppercase tracking-wide text-cream-faint">Codeshare</span>
             </div>
           </div>
         ))}
