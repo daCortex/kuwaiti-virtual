@@ -42,7 +42,7 @@ export function LiveMap({ hub, legs }: { hub: [number, number]; legs: Leg[] }) {
       }
       // hub
       L.circleMarker(hub, { radius: 6, color: blue, fillColor: "#5b9bc9", fillOpacity: 1, weight: 2 })
-        .bindTooltip("Kuwait International (OKBK) · Hub", { className: "lfm", permanent: false }).addTo(map);
+        .bindTooltip("Kuwait International (OKKK) · Hub", { className: "lfm", permanent: false }).addTo(map);
 
       // live flights
       try {

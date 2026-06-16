@@ -71,7 +71,7 @@ export function EventsAdmin({ posts }: { posts: NewsPost[] }) {
             <select value={category} onChange={(e) => setCategory(e.target.value)} className={input}>{CATEGORIES.map((c) => <option key={c}>{c}</option>)}</select>
           </div>
           <div><label className={label}>Title</label>
-            <input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="e.g. Friday Group Flight: OKBK → LEMD" className={input} maxLength={140} /></div>
+            <input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="e.g. Friday Group Flight: OKKK → LEMD" className={input} maxLength={140} /></div>
           {needsDate && (
             <div><label className={label}>When</label>
               <input type="datetime-local" value={eventAt} onChange={(e) => setEventAt(e.target.value)} className={input} /></div>

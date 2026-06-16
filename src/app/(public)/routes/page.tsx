@@ -10,13 +10,13 @@ function fmt(min: number) {
 }
 
 export default function RoutesPage() {
-  const hub = AIRPORT_COORDS.OKBK;
+  const hub = AIRPORT_COORDS.OKKK;
   const seen = new Set<string>();
   const out: { to: [number, number]; code: string; city: string }[] = [];
   for (const r of ROUTES) {
     if (r.airline !== "Kuwaiti") continue;
     for (const code of [r.dep, r.arr]) {
-      if (code === "OKBK" || seen.has(code) || !AIRPORT_COORDS[code]) continue;
+      if (code === "OKKK" || seen.has(code) || !AIRPORT_COORDS[code]) continue;
       seen.add(code);
       out.push({ to: AIRPORT_COORDS[code], code, city: AIRPORTS[code]?.city ?? code });
     }

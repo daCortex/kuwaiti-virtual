@@ -182,7 +182,7 @@ export function FilePirep({
         <div className="space-y-5 rounded-2xl border border-obsidian bg-ink-900 p-6">
           <div className="grid gap-4 sm:grid-cols-3">
             <div><label className={label}>Flight no.</label><input className={`${input} uppercase font-mono`} placeholder="KU117" value={f.flightNo} onChange={(e) => set("flightNo", e.target.value)} /></div>
-            <div><label className={label}>From (ICAO)</label><input className={`${input} uppercase font-mono`} placeholder="OKBK" maxLength={4} value={f.dep} onChange={(e) => set("dep", e.target.value)} /></div>
+            <div><label className={label}>From (ICAO)</label><input className={`${input} uppercase font-mono`} placeholder="OKKK" maxLength={4} value={f.dep} onChange={(e) => set("dep", e.target.value)} /></div>
             <div><label className={label}>To (ICAO)</label><input className={`${input} uppercase font-mono`} placeholder="KJFK" maxLength={4} value={f.arr} onChange={(e) => set("arr", e.target.value)} /></div>
           </div>
           <div><label className={label}>Aircraft</label>

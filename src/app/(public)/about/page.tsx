@@ -8,7 +8,7 @@ export default function AboutPage() {
       <header className="reveal">
         <p className="eyebrow">About</p>
         <h1 className="mt-2 font-display text-4xl font-semibold text-cream lg:text-5xl">A virtual airline built like a real one.</h1>
-        <p className="mt-4 max-w-2xl text-cream-dim">Kuwaiti Virtual operates inside Infinite Flight with real-world airline discipline and structure — a 70-route network from Kuwait City (OKBK), focus cities in Dubai and Jeddah, and a seven-rank path from Cadet to BlueBird Commander.</p>
+        <p className="mt-4 max-w-2xl text-cream-dim">Kuwaiti Virtual operates inside Infinite Flight with real-world airline discipline and structure — a 70-route network from Kuwait City (OKKK), focus cities in Dubai and Jeddah, and a seven-rank path from Cadet to BlueBird Commander.</p>
       </header>
 
       {/* How we operate */}

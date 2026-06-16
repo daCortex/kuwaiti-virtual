@@ -47,7 +47,7 @@ export function CodeshareManager({ routes, partners }: { routes: Row[]; partners
           </div>
           <div className="grid gap-4 sm:grid-cols-3">
             <div><label className={label}>Flight no.</label><input className={`${input} font-mono uppercase`} value={f.routeNumber} onChange={(e) => set("routeNumber", e.target.value)} placeholder="BA793" /></div>
-            <div><label className={label}>From</label><input className={`${input} font-mono uppercase`} maxLength={4} value={f.dep} onChange={(e) => set("dep", e.target.value)} placeholder="OKBK" /></div>
+            <div><label className={label}>From</label><input className={`${input} font-mono uppercase`} maxLength={4} value={f.dep} onChange={(e) => set("dep", e.target.value)} placeholder="OKKK" /></div>
             <div><label className={label}>To</label><input className={`${input} font-mono uppercase`} maxLength={4} value={f.arr} onChange={(e) => set("arr", e.target.value)} placeholder="EGLL" /></div>
           </div>
           <div><label className={label}>Aircraft</label><input className={input} value={f.aircraft} onChange={(e) => set("aircraft", e.target.value)} placeholder="Boeing 787-8" /></div>

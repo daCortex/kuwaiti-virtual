@@ -100,8 +100,8 @@ export const FLEET: Aircraft[] = [
     mtow: "351 t",
     cruise: "Mach 0.84 · FL350",
     recommended: [
-      { route: "OKBK → KJFK", flightNo: "KU117" },
-      { route: "OKBK → EGLL", flightNo: "KU101" },
+      { route: "OKKK → KJFK", flightNo: "KU117" },
+      { route: "OKKK → EGLL", flightNo: "KU101" },
     ],
   },
   {
@@ -119,8 +119,8 @@ export const FLEET: Aircraft[] = [
     mtow: "251 t",
     cruise: "Mach 0.82 · FL400",
     recommended: [
-      { route: "OKBK → VIDP", flightNo: "KU383" },
-      { route: "OKBK → HECA", flightNo: "KU541" },
+      { route: "OKKK → VIDP", flightNo: "KU383" },
+      { route: "OKKK → HECA", flightNo: "KU541" },
     ],
   },
   {
@@ -138,8 +138,8 @@ export const FLEET: Aircraft[] = [
     mtow: "251 t",
     cruise: "Mach 0.82 · FL410",
     recommended: [
-      { route: "OKBK → WSSS", flightNo: "KU417" },
-      { route: "OKBK → LFPG", flightNo: "KU175" },
+      { route: "OKKK → WSSS", flightNo: "KU417" },
+      { route: "OKKK → LFPG", flightNo: "KU175" },
     ],
   },
   {
@@ -157,8 +157,8 @@ export const FLEET: Aircraft[] = [
     mtow: "233 t",
     cruise: "Mach 0.82 · FL390",
     recommended: [
-      { route: "OKBK → OERK", flightNo: "KU611" },
-      { route: "OKBK → VABB", flightNo: "KU301" },
+      { route: "OKKK → OERK", flightNo: "KU611" },
+      { route: "OKKK → VABB", flightNo: "KU301" },
     ],
   },
   {
@@ -176,8 +176,8 @@ export const FLEET: Aircraft[] = [
     mtow: "97 t",
     cruise: "Mach 0.78 · FL360",
     recommended: [
-      { route: "OKBK → OEJN", flightNo: "KU643" },
-      { route: "OKBK → OTHH", flightNo: "KU671" },
+      { route: "OKKK → OEJN", flightNo: "KU643" },
+      { route: "OKKK → OTHH", flightNo: "KU671" },
     ],
   },
   {
@@ -195,8 +195,8 @@ export const FLEET: Aircraft[] = [
     mtow: "79 t",
     cruise: "Mach 0.78 · FL360",
     recommended: [
-      { route: "OKBK → OMDB", flightNo: "KU671" },
-      { route: "OKBK → OBBI", flightNo: "KU205" },
+      { route: "OKKK → OMDB", flightNo: "KU671" },
+      { route: "OKKK → OBBI", flightNo: "KU205" },
     ],
   },
 ];
@@ -245,7 +245,7 @@ export type Hub = {
 
 /* General Kuwaiti Virtual fun facts, mixed into each hub's fact pool. */
 export const AIRLINE_FACTS: string[] = [
-  "Kuwait International Airport (OKBK) is the home base of Kuwaiti Virtual, handling over 10 million passengers a year.",
+  "Kuwait International Airport (OKKK) is the home base of Kuwaiti Virtual, handling over 10 million passengers a year.",
   "Our network reaches from the hot Middle East to Africa, innovative Asia and bustling North America.",
   "Kuwaiti Virtual operates a modern fleet of Airbus and Boeing aircraft for true global reach.",
   "Every Kuwaiti Virtual flight wears the KU flight code and the callsign “KUWAITI”.",
@@ -258,7 +258,7 @@ export const HUBS: Hub[] = [
   {
     city: "Kuwait International",
     iata: "KWI",
-    icao: "OKBK",
+    icao: "OKKK",
     primary: true,
     region: "Kuwait · Middle East",
     x: 63.32,
@@ -267,9 +267,9 @@ export const HUBS: Hub[] = [
     departuresPerDay: 90,
     destinations: 40,
     facts: [
-      "Kuwait International (OKBK) is Kuwait's main airport and Kuwaiti Virtual's home base.",
+      "Kuwait International (OKKK) is Kuwait's main airport and Kuwaiti Virtual's home base.",
       "We operate from Terminal 4, handling over 10 million passengers a year.",
-      "OKBK sits about 15 km south of Kuwait City.",
+      "OKKK sits about 15 km south of Kuwait City.",
       "It is the launch point for every long-haul rotation in our network.",
     ],
   },

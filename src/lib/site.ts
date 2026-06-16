@@ -4,7 +4,7 @@
 ------------------------------------------------------------------- */
 
 export const SITE = {
-  network: { airports: 40, routes: 70, hub: "OKBK" },
+  network: { airports: 40, routes: 70, hub: "OKKK" },
   fleetCount: 6,
   longestRangeNm: 8150,
   longestSector: "13h 05m",
@@ -79,7 +79,7 @@ export type SiteHub = {
 };
 
 export const SITE_HUBS: SiteHub[] = [
-  { name: "Kuwait International", icao: "OKBK", iata: "KWI", city: "Kuwait City", country: "Kuwait", role: "Main Hub", coords: "29.2266° N · 47.9689° E", careerCount: 70, blurb: "Primary operating base at Terminal 4. Every long-haul rotation and most regional rotations originate or terminate here — the gateway between the Gulf, Asia, Africa and the West." },
+  { name: "Kuwait International", icao: "OKKK", iata: "KWI", city: "Kuwait City", country: "Kuwait", role: "Main Hub", coords: "29.2266° N · 47.9689° E", careerCount: 70, blurb: "Primary operating base at Terminal 4. Every long-haul rotation and most regional rotations originate or terminate here — the gateway between the Gulf, Asia, Africa and the West." },
   { name: "Dubai International", icao: "OMDB", iata: "DXB", city: "Dubai", country: "United Arab Emirates", role: "Cargo Ops", coords: "25.2532° N · 55.3657° E", blurb: "Gulf cargo gateway and high-frequency focus city — freighter turnarounds and belly-cargo feeders." },
   { name: "King Abdulaziz Int'l", icao: "OEJN", iata: "JED", city: "Jeddah", country: "Saudi Arabia", role: "Cargo Ops", coords: "21.6796° N · 39.1565° E", blurb: "Regional cargo interchange for high-value freight across the Arabian peninsula." },
 ];

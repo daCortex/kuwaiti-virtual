@@ -40,7 +40,7 @@ s/\bAurora\b/Starter/g;
 # ---- Geography ----
 s/Helsinki-Vantaa/Kuwait International/g;
 s/Helsinki/Kuwait City/g;
-s/\bEFHK\b/OKBK/g;
+s/\bEFHK\b/OKKK/g;
 s/Nordic Regional /Kuwaiti /g;
 s/Nordic/Arabian/g;
 s/Finnish/Kuwaiti/g;

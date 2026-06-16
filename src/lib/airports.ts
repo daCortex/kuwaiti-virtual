@@ -2,7 +2,7 @@
    Used to render friendly route labels across the portal. */
 export const AIRPORTS: Record<string, { city: string; country: string; iata: string }> = {
   // --- Hub & Gulf ---
-  OKBK: { city: "Kuwait City", country: "Kuwait", iata: "KWI" },
+  OKKK: { city: "Kuwait City", country: "Kuwait", iata: "KWI" },
   OERK: { city: "Riyadh", country: "Saudi Arabia", iata: "RUH" },
   OEJN: { city: "Jeddah", country: "Saudi Arabia", iata: "JED" },
   OEMA: { city: "Madinah", country: "Saudi Arabia", iata: "MED" },
@@ -61,7 +61,7 @@ export function airportLabel(icao: string): string {
 
 /* Approximate [lat, lon] for each network airport — for the live map. */
 export const AIRPORT_COORDS: Record<string, [number, number]> = {
-  OKBK: [29.23, 47.97], OERK: [24.96, 46.70], OEJN: [21.68, 39.16], OEMA: [24.55, 39.70],
+  OKKK: [29.23, 47.97], OERK: [24.96, 46.70], OEJN: [21.68, 39.16], OEMA: [24.55, 39.70],
   OEDF: [26.47, 49.80], OMDB: [25.25, 55.36], OMAA: [24.43, 54.65], OBBI: [26.27, 50.63],
   OOMS: [23.59, 58.28], OTHH: [25.27, 51.61], OJAI: [31.72, 36.18], OLBA: [33.82, 35.49],
   ORMM: [30.55, 47.66], ORBI: [33.26, 44.23], OIIE: [35.42, 51.15], OISS: [29.54, 52.59],

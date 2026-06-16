@@ -12,7 +12,7 @@ export default function FleetPage() {
       </header>
 
       <div className="mt-8 flex flex-wrap gap-6 text-sm">
-        {[["Current aircraft", "6"], ["Longest range", "8,150 nm"], ["Hub", "OKBK"]].map(([k, v]) => (
+        {[["Current aircraft", "6"], ["Longest range", "8,150 nm"], ["Hub", "OKKK"]].map(([k, v]) => (
           <div key={k} className="rounded-2xl border border-obsidian bg-ink-900 px-5 py-3 lift">
             <p className="text-xs uppercase tracking-wide text-cream-faint">{k}</p>
             <p className="font-display text-xl font-semibold text-cream">{v}</p>

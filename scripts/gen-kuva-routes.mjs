@@ -1,4 +1,4 @@
-/* Generates src/lib/routes.ts — Kuwaiti Virtual route network (Kuwait hub OKBK).
+/* Generates src/lib/routes.ts — Kuwaiti Virtual route network (Kuwait hub OKKK).
    A realistic Kuwait Airways network: the Gulf, Turkey, the Levant, the Indian
    subcontinent, the Far East, Africa, Europe, North America, plus 5th-freedom
    tag legs (London–New York, Bangkok–Manila).
@@ -16,51 +16,51 @@ const A20N = "Kuwaiti Airbus A320neo";
 // [routeNumber, dep, arr, aircraft, minutes]  — airline "Kuwaiti"
 const KUWAITI = [
   // --- Gulf & Middle East (A320neo / A321neo) ---
-  ["KU611/KU612", "OKBK", "OERK", A20N, 90],
-  ["KU615/KU616", "OKBK", "OEJN", A21N, 130],
-  ["KU617/KU618", "OKBK", "OEMA", A21N, 135],
-  ["KU561/KU562", "OKBK", "OEDF", A20N, 65],
-  ["KU671/KU672", "OKBK", "OMDB", A20N, 80],
-  ["KU673/KU674", "OKBK", "OMAA", A20N, 85],
-  ["KU205/KU206", "OKBK", "OBBI", A20N, 55],
-  ["KU181/KU182", "OKBK", "OOMS", A21N, 95],
-  ["KU541/KU542", "OKBK", "OJAI", A21N, 150],
-  ["KU551/KU552", "OKBK", "OLBA", A21N, 175],
-  ["KU525/KU526", "OKBK", "ORMM", A20N, 50],
-  ["KU521/KU522", "OKBK", "ORBI", A20N, 70],
-  ["KU663/KU664", "OKBK", "OIIE", A20N, 100],
-  ["KU677/KU678", "OKBK", "OISS", A20N, 85],
+  ["KU611/KU612", "OKKK", "OERK", A20N, 90],
+  ["KU615/KU616", "OKKK", "OEJN", A21N, 130],
+  ["KU617/KU618", "OKKK", "OEMA", A21N, 135],
+  ["KU561/KU562", "OKKK", "OEDF", A20N, 65],
+  ["KU671/KU672", "OKKK", "OMDB", A20N, 80],
+  ["KU673/KU674", "OKKK", "OMAA", A20N, 85],
+  ["KU205/KU206", "OKKK", "OBBI", A20N, 55],
+  ["KU181/KU182", "OKKK", "OOMS", A21N, 95],
+  ["KU541/KU542", "OKKK", "OJAI", A21N, 150],
+  ["KU551/KU552", "OKKK", "OLBA", A21N, 175],
+  ["KU525/KU526", "OKKK", "ORMM", A20N, 50],
+  ["KU521/KU522", "OKKK", "ORBI", A20N, 70],
+  ["KU663/KU664", "OKKK", "OIIE", A20N, 100],
+  ["KU677/KU678", "OKKK", "OISS", A20N, 85],
   // --- Turkey (A330 / A321neo) ---
-  ["KU169/KU170", "OKBK", "LTFM", A333, 245],
-  ["KU173/KU174", "OKBK", "LTAI", A21N, 250],
+  ["KU169/KU170", "OKKK", "LTFM", A333, 245],
+  ["KU173/KU174", "OKKK", "LTAI", A21N, 250],
   // --- Africa ---
-  ["KU543/KU544", "OKBK", "HECA", A333, 170],
+  ["KU543/KU544", "OKKK", "HECA", A333, 170],
   // --- Indian subcontinent ---
-  ["KU381/KU382", "OKBK", "VIDP", A333, 250],
-  ["KU301/KU302", "OKBK", "VABB", A333, 225],
-  ["KU385/KU386", "OKBK", "VAAH", A21N, 230],
-  ["KU387/KU388", "OKBK", "VOHS", A333, 270],
-  ["KU383/KU384", "OKBK", "VOMM", A333, 285],
-  ["KU389/KU390", "OKBK", "VOCI", A333, 290],
-  ["KU391/KU392", "OKBK", "VOTV", A333, 300],
-  ["KU351/KU352", "OKBK", "OPKC", A20N, 135],
-  ["KU357/KU358", "OKBK", "OPLA", A21N, 165],
-  ["KU361/KU362", "OKBK", "OPIS", A21N, 165],
-  ["KU371/KU372", "OKBK", "VGHS", A333, 285],
-  ["KU345/KU346", "OKBK", "VCBI", A333, 290],
+  ["KU381/KU382", "OKKK", "VIDP", A333, 250],
+  ["KU301/KU302", "OKKK", "VABB", A333, 225],
+  ["KU385/KU386", "OKKK", "VAAH", A21N, 230],
+  ["KU387/KU388", "OKKK", "VOHS", A333, 270],
+  ["KU383/KU384", "OKKK", "VOMM", A333, 285],
+  ["KU389/KU390", "OKKK", "VOCI", A333, 290],
+  ["KU391/KU392", "OKKK", "VOTV", A333, 300],
+  ["KU351/KU352", "OKKK", "OPKC", A20N, 135],
+  ["KU357/KU358", "OKKK", "OPLA", A21N, 165],
+  ["KU361/KU362", "OKKK", "OPIS", A21N, 165],
+  ["KU371/KU372", "OKKK", "VGHS", A333, 285],
+  ["KU345/KU346", "OKKK", "VCBI", A333, 290],
   // --- Far East & South-East Asia ---
-  ["KU411/KU412", "OKBK", "VTBS", A338, 395],
-  ["KU421/KU422", "OKBK", "ZGGG", A339, 480],
-  ["KU415/KU416", "OKBK", "RPLL", A339, 560],
+  ["KU411/KU412", "OKKK", "VTBS", A338, 395],
+  ["KU421/KU422", "OKKK", "ZGGG", A339, 480],
+  ["KU415/KU416", "OKKK", "RPLL", A339, 560],
   // --- Europe (A330 / 777) ---
-  ["KU101/KU102", "OKBK", "EGLL", B777, 395],
-  ["KU165/KU166", "OKBK", "EDDF", A338, 360],
-  ["KU175/KU176", "OKBK", "LFPG", A338, 375],
-  ["KU185/KU186", "OKBK", "LIRF", A338, 330],
-  ["KU167/KU168", "OKBK", "LSGG", A338, 360],
-  ["KU187/KU188", "OKBK", "LEMD", A338, 420],
+  ["KU101/KU102", "OKKK", "EGLL", B777, 395],
+  ["KU165/KU166", "OKKK", "EDDF", A338, 360],
+  ["KU175/KU176", "OKKK", "LFPG", A338, 375],
+  ["KU185/KU186", "OKKK", "LIRF", A338, 330],
+  ["KU167/KU168", "OKKK", "LSGG", A338, 360],
+  ["KU187/KU188", "OKKK", "LEMD", A338, 420],
   // --- North America (777) ---
-  ["KU117/KU118", "OKBK", "KJFK", B777, 785],
+  ["KU117/KU118", "OKKK", "KJFK", B777, 785],
   // --- 5th-freedom tag legs ---
   ["KU103/KU104", "EGLL", "KJFK", B777, 460], // London → New York
   ["KU417/KU418", "VTBS", "RPLL", A338, 210], // Bangkok → Manila
@@ -68,11 +68,11 @@ const KUWAITI = [
 
 // [routeNumber, dep, arr, aircraft, minutes, airline]  — codeshare partners
 const CODESHARE = [
-  ["QR1087/QR1088", "OKBK", "OTHH", "Qatari Airbus A320", 70, "Qatari"],
-  ["EK856/EK857", "OKBK", "OMDB", "Emirates Boeing 777-300ER", 80, "Emirates"],
-  ["SV576/SV577", "OKBK", "OEJN", "Saudia Airbus A330-300", 130, "Saudia"],
-  ["MS610/MS611", "OKBK", "HECA", "EgyptAir Boeing 737-800", 170, "EgyptAir"],
-  ["TK765/TK766", "OKBK", "LTFM", "Turkish Airbus A321neo", 245, "Turkish"],
+  ["QR1087/QR1088", "OKKK", "OTHH", "Qatari Airbus A320", 70, "Qatari"],
+  ["EK856/EK857", "OKKK", "OMDB", "Emirates Boeing 777-300ER", 80, "Emirates"],
+  ["SV576/SV577", "OKKK", "OEJN", "Saudia Airbus A330-300", 130, "Saudia"],
+  ["MS610/MS611", "OKKK", "HECA", "EgyptAir Boeing 737-800", 170, "EgyptAir"],
+  ["TK765/TK766", "OKKK", "LTFM", "Turkish Airbus A321neo", 245, "Turkish"],
   ["BA117/BA118", "EGLL", "KJFK", "British Airways Boeing 777-300ER", 460, "British Airways"],
 ];
 
@@ -86,7 +86,7 @@ const routes = [
 ];
 
 const header = `/* AUTO-GENERATED by scripts/gen-kuva-routes.mjs — Kuwaiti Virtual route
-   network, anchored at Kuwait International (OKBK). Mainline flights wear the KU
+   network, anchored at Kuwait International (OKKK). Mainline flights wear the KU
    code; codeshare legs carry the partner's flight number and airline. */
 
 export type Route = {

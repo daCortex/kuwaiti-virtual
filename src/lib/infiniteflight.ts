@@ -212,7 +212,7 @@ type FplItem = {
 };
 
 function isAirport(id: string | null): boolean {
-  // ICAO airport identifiers are 3–4 letters (KSEA, OKBK, EGLL, OMDB…).
+  // ICAO airport identifiers are 3–4 letters (KSEA, OKKK, EGLL, OMDB…).
   return !!id && /^[A-Z]{3,4}$/.test(id.trim().toUpperCase());
 }
 

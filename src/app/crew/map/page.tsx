@@ -6,13 +6,13 @@ export const metadata = { title: "Live Map" };
 export const dynamic = "force-dynamic";
 
 export default function MapPage() {
-  const hub = AIRPORT_COORDS.OKBK;
+  const hub = AIRPORT_COORDS.OKKK;
   const seen = new Set<string>();
   const legs: { to: [number, number]; code: string; city: string }[] = [];
   for (const r of ROUTES) {
     if (r.airline !== "Kuwaiti") continue;
     for (const code of [r.dep, r.arr]) {
-      if (code === "OKBK" || seen.has(code)) continue;
+      if (code === "OKKK" || seen.has(code)) continue;
       const to = AIRPORT_COORDS[code];
       if (!to) continue;
       seen.add(code);
