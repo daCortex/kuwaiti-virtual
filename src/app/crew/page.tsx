@@ -3,6 +3,7 @@ import { getPilotDashboard, fmtHours, fmtDate, timeAgo } from "@/lib/portal";
 import { getRotw, getSpotlightRoutes, firstFlightNo } from "@/lib/ops";
 import { listNews } from "@/lib/db";
 import { airportCity } from "@/lib/airports";
+import { LiveFlightStatus } from "@/components/portal/LiveFlightStatus";
 
 export const dynamic = "force-dynamic";
 
@@ -26,6 +27,7 @@ export default async function Dashboard() {
 
   return (
     <div className="mx-auto max-w-6xl px-5 py-8 lg:px-8 lg:py-10">
+      <LiveFlightStatus />
       {/* ============ HERO ============ */}
       <section className="rise overflow-hidden rounded-3xl border border-obsidian">
         <div className="aurora relative px-6 py-8 lg:px-10">

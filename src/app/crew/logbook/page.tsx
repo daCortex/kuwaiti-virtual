@@ -54,7 +54,10 @@ export default async function LogbookPage() {
                 </div>
                 <span className="hidden text-sm text-cream-dim md:block">{p.aircraft}</span>
                 <span className="hidden text-sm text-cream-dim md:block">{fmtHours(p.minutes)}</span>
-                <span className="text-right"><StatusPill status={p.status} /></span>
+                <span className="flex items-center justify-end gap-1.5">
+                  {p.verified && <span title="Verified against your Infinite Flight logbook" className="rounded-full bg-emerald-500/12 px-2 py-0.5 text-[0.6rem] font-semibold uppercase tracking-wide text-emerald-600">✓ Verified</span>}
+                  <StatusPill status={p.status} />
+                </span>
               </li>
             ))}
           </ul>

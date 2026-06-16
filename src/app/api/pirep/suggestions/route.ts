@@ -6,15 +6,19 @@ import { FLEET } from "@/lib/data";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const FLEET_TYPES = FLEET.map((a) => a.type); // ["A350-900","A330-900neo","A321neo"]
+const FLEET_TYPES = FLEET.map((a) => a.type); // ["B777-300ER","A330-900",...,"A320neo"]
+const has = (kw: string) => FLEET_TYPES.find((t) => t.toUpperCase().includes(kw)) ?? "";
 
-/* Map an IF aircraft name to one of our fleet types, else "". */
+/* Map an IF aircraft name to one of our current fleet types, else "". */
 function toFleetType(ifName: string | null): string {
   if (!ifName) return "";
   const n = ifName.toUpperCase();
-  if (n.includes("A350")) return FLEET_TYPES.find((t) => t.includes("A350")) ?? "";
-  if (n.includes("A330")) return FLEET_TYPES.find((t) => t.includes("A330")) ?? "";
-  if (n.includes("A321")) return FLEET_TYPES.find((t) => t.includes("A321")) ?? "";
+  if (n.includes("777")) return has("777");
+  if (n.includes("A330-900") || n.includes("A330NEO")) return has("A330-900");
+  if (n.includes("A330-800")) return has("A330-800");
+  if (n.includes("A330")) return has("A330-300");
+  if (n.includes("A321")) return has("A321");
+  if (n.includes("A320")) return has("A320");
   return "";
 }
 

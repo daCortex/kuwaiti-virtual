@@ -68,6 +68,9 @@ export type Pirep = {
   reviewer: string | null;
   /* Discord message id of this PIREP's post in the log channel (for edits). */
   discordMsgId: string | null;
+  /* True when the flight was matched against the pilot's Infinite Flight
+     logbook (ACARS verification). Verified reports are auto-approved. */
+  verified?: boolean;
 };
 
 export type NewPirep = Omit<
@@ -186,6 +189,7 @@ async function ensureSchema() {
   await sql`ALTER TABLE pireps ADD COLUMN IF NOT EXISTS multiplier REAL NOT NULL DEFAULT 1`;
   await sql`ALTER TABLE pireps ADD COLUMN IF NOT EXISTS multiplier_code TEXT`;
   await sql`ALTER TABLE pireps ADD COLUMN IF NOT EXISTS discord_msg_id TEXT`;
+  await sql`ALTER TABLE pireps ADD COLUMN IF NOT EXISTS verified BOOLEAN NOT NULL DEFAULT false`;
   await sql`
     CREATE TABLE IF NOT EXISTS news (
       id SERIAL PRIMARY KEY,
@@ -297,6 +301,7 @@ function rowToPirep(r: any): Pirep {
     reviewedAt: r.reviewed_at ? new Date(r.reviewed_at).toISOString() : null,
     reviewer: r.reviewer ?? null,
     discordMsgId: r.discord_msg_id ?? null,
+    verified: r.verified === true,
   };
 }
 /* eslint-enable @typescript-eslint/no-explicit-any */
@@ -585,11 +590,11 @@ export async function createPirep(input: NewPirep): Promise<Pirep> {
     const rows = await sql`
       INSERT INTO pireps
         (pilot_id, flight_no, dep, arr, aircraft, minutes, raw_minutes, multiplier, multiplier_code,
-         fuel_kg, landing_rate, server, remarks)
+         fuel_kg, landing_rate, server, remarks, verified)
       VALUES
         (${input.pilotId}, ${input.flightNo}, ${input.dep}, ${input.arr}, ${input.aircraft},
          ${input.minutes}, ${input.rawMinutes}, ${input.multiplier}, ${input.multiplierCode},
-         ${input.fuelKg}, ${input.landingRate}, ${input.server}, ${input.remarks})
+         ${input.fuelKg}, ${input.landingRate}, ${input.server}, ${input.remarks}, ${input.verified ?? false})
       RETURNING *`;
     return rowToPirep(rows[0]);
   }

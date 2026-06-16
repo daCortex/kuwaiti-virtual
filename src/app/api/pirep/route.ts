@@ -1,8 +1,9 @@
 import { getSession } from "@/lib/auth";
-import { createPirep } from "@/lib/db";
+import { createPirep, getPilotById, updatePirepStatus } from "@/lib/db";
 import { announceFiledPirep } from "@/lib/pireplog";
 import { multiplierFor } from "@/lib/data";
 import { VALID_AIRCRAFT } from "@/lib/aircraft";
+import { ifConfigured, findLogbookFlight } from "@/lib/infiniteflight";
 
 export async function POST(request: Request) {
   const session = await getSession();
@@ -50,6 +51,17 @@ export async function POST(request: Request) {
     return Response.json({ error: "Flight time must be greater than zero." }, { status: 400 });
   }
 
+  // ACARS verification — match the filed flight against the pilot's real
+  // Infinite Flight logbook (when their IF account is linked + the API is on).
+  let verified = false;
+  if (ifConfigured) {
+    const pilot = await getPilotById(session.pilotId).catch(() => null);
+    if (pilot?.ifUserId) {
+      const match = await findLogbookFlight(pilot.ifUserId, dep, arr).catch(() => null);
+      verified = !!match;
+    }
+  }
+
   const pirep = await createPirep({
     pilotId: session.pilotId,
     flightNo,
@@ -64,9 +76,17 @@ export async function POST(request: Request) {
     landingRate,
     server,
     remarks,
+    verified,
   });
+
+  // Verified flights are trusted — auto-approve and credit immediately.
+  if (verified) {
+    await updatePirepStatus(pirep.id, "approved", "ACARS ✦ verified").catch(() => {});
+    pirep.status = "approved";
+    pirep.reviewer = "ACARS ✦ verified";
+  }
 
   await announceFiledPirep(pirep.id);
 
-  return Response.json({ ok: true, pirep });
+  return Response.json({ ok: true, pirep, verified });
 }
