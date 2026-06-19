@@ -20,7 +20,16 @@ export default async function PortalLayout({ children }: { children: React.React
     : null;
 
   return (
-    <div className="flex min-h-full flex-col">
+    <div className="relative flex min-h-full flex-col">
+      {/* Brand-blue wash — more Kuwaiti colour across the Crew Center. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[420px]"
+        style={{
+          background:
+            "radial-gradient(900px 360px at 15% -10%, color-mix(in srgb, var(--color-heather) 22%, transparent), transparent 70%), radial-gradient(760px 360px at 92% -8%, color-mix(in srgb, var(--color-gold) 20%, transparent), transparent 65%)",
+        }}
+      />
       <PortalNav summary={summary} />
       <main className="flex-1">{children}</main>
 

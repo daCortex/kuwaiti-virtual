@@ -45,11 +45,16 @@ const store = (g.__fnrOps ??= {
 });
 store.extra ??= [];
 
-const finnairRoutes = ROUTES.filter((r) => r.airline === "Kuwaiti");
-
-/* All routes = the static network + staff-added codeshares. */
+/* All routes = the static network + staff-added routes (Crew Center). */
 export function allRoutes(): Route[] {
   return [...ROUTES, ...store.extra];
+}
+
+/* Live Kuwaiti mainline routes — base network plus anything staff have added.
+   Drives Route of the Week, spotlights, dispatch and cargo, so the routes
+   added in the Crew Center immediately power the whole portal. */
+function kuwaitiRoutes(): Route[] {
+  return allRoutes().filter((r) => r.airline === "Kuwaiti");
 }
 export function getExtraRoutes(): Route[] {
   return [...store.extra];
@@ -85,26 +90,28 @@ export function removeCodeshareRoute(routeNumber: string): boolean {
   return store.extra.length < before;
 }
 
-export function getRotw(): Route {
+export function getRotw(): Route | null {
+  const routes = kuwaitiRoutes();
   return (
-    finnairRoutes.find((r) => r.routeNumber === store.rotwNo) ??
-    finnairRoutes[0]
+    routes.find((r) => r.routeNumber === store.rotwNo) ??
+    routes[0] ??
+    null
   );
 }
 export function setRotw(routeNumber: string): boolean {
-  const ok = finnairRoutes.some((r) => r.routeNumber === routeNumber);
+  const ok = kuwaitiRoutes().some((r) => r.routeNumber === routeNumber);
   if (ok) store.rotwNo = routeNumber;
   return ok;
 }
 export function rotwOptions(): Route[] {
-  return finnairRoutes;
+  return kuwaitiRoutes();
 }
 
 /* ---- Spotlight routes (2× AP), 1–3 per week ---- */
 export function getSpotlightRoutes(d = new Date()): Route[] {
   const r = rng(weekIndex(d) * 7919 + 13);
   const count = 1 + Math.floor(r() * 3); // 1–3
-  const pool = [...finnairRoutes];
+  const pool = [...kuwaitiRoutes()];
   const picks: Route[] = [];
   for (let i = 0; i < count && pool.length; i++) {
     picks.push(pool.splice(Math.floor(r() * pool.length), 1)[0]);
@@ -144,7 +151,7 @@ export function getDispatches(
   const rankMult = opts.rankMultiplier ?? 1;
 
   // Eligible routes: prefer Kuwaiti mainline the pilot can fly.
-  let pool = finnairRoutes.slice();
+  let pool = kuwaitiRoutes().slice();
   if (opts.authorizedFleet?.length) {
     const ok = pool.filter((rt) =>
       opts.authorizedFleet!.some((f) =>
@@ -209,7 +216,7 @@ const CARGO_TYPES = ["E190-F", "A321-F", "B777-F", "B747-8F"];
 export function getCargoContracts(pilotId: number, cargoHours = 0, d = new Date()): CargoContract[] {
   const r = rng((pilotId + 7) * 40503 + dayIndex(d));
   const cert = cargoCertForHours(cargoHours).name;
-  const pool = finnairRoutes.filter((rt) => rt.minutes >= 90); // freight = meaningful sectors
+  const pool = kuwaitiRoutes().filter((rt) => rt.minutes >= 90); // freight = meaningful sectors
   const risks: CargoRisk[] = ["low", "low", "medium", "medium", "high"];
   const out: CargoContract[] = [];
   const used = new Set<string>();

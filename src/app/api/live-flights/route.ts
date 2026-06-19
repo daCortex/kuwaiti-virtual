@@ -59,19 +59,25 @@ export async function GET() {
     }),
   );
 
+  // When the route database is empty (routes managed in the Crew Center),
+  // show every Kuwaiti-callsign flight so the live map still comes alive.
+  const noRouteFilter = KUWAITI_ROUTES.size === 0;
+
   const out = flights
     .map((f, i) => {
       const liv = f.liveryId ? liveries.get(f.liveryId) : undefined;
       const { route, track } = details[i];
 
-      // Must fly a route in our database, with an appropriate aircraft.
-      const origin = (route?.origin ?? "").toUpperCase();
-      const dest = (route?.destination ?? "").toUpperCase();
-      if (!origin || !dest) return null;
-      const allowed = KUWAITI_ROUTES.get(`${origin}|${dest}`);
-      if (!allowed) return null; // route not in our database → skip
-      const acTok = fleetTok(liv?.aircraftName);
-      if (acTok && allowed.size > 0 && !allowed.has(acTok)) return null; // wrong aircraft
+      if (!noRouteFilter) {
+        // Must fly a route in our database, with an appropriate aircraft.
+        const origin = (route?.origin ?? "").toUpperCase();
+        const dest = (route?.destination ?? "").toUpperCase();
+        if (!origin || !dest) return null;
+        const allowed = KUWAITI_ROUTES.get(`${origin}|${dest}`);
+        if (!allowed) return null; // route not in our database → skip
+        const acTok = fleetTok(liv?.aircraftName);
+        if (acTok && allowed.size > 0 && !allowed.has(acTok)) return null; // wrong aircraft
+      }
 
       return {
         id: f.flightId,

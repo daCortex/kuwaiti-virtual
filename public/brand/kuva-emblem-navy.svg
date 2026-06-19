@@ -1,7 +1,7 @@
-<svg width="72" height="44" viewBox="0 0 72 44" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Kuwaiti Virtual">
-  <!-- Soaring falcon wing — three swept feathers ascending -->
-  <path d="M4 34 C20 30 34 24 64 8" stroke="#24638E" stroke-width="4" stroke-linecap="round"/>
-  <path d="M6 26 C20 23 30 19 52 9" stroke="#1F2C56" stroke-width="4" stroke-linecap="round"/>
-  <path d="M10 18 C20 16 26 14 40 9" stroke="#1F2C56" stroke-width="4" stroke-linecap="round"/>
-  <circle cx="64" cy="9" r="4" fill="#24638E"/>
+<svg width="84" height="52" viewBox="0 0 84 52" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Kuwaiti Virtual">
+  <!-- Soaring falcon — two swept wings + body, in the brand blues -->
+  <path d="M42 47 C53 31 64 21 80 13 C70 26 61 37 50 47 Z" fill="#24638E"/>
+  <path d="M42 47 C31 31 20 21 4 13 C14 26 23 37 34 47 Z" fill="#1F2C56"/>
+  <path d="M42 50 L38.5 33 C40 29 44 29 45.5 33 Z" fill="#1F2C56"/>
+  <circle cx="42" cy="20" r="3.4" fill="#24638E"/>
 </svg>

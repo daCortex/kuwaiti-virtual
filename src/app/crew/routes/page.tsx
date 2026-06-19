@@ -7,7 +7,7 @@ export const metadata = { title: "Route Database" };
 export const dynamic = "force-dynamic";
 
 export default async function RoutesPage() {
-  const rotwNo = getRotw().routeNumber;
+  const rotwNo = getRotw()?.routeNumber ?? "";
   const spotlightNos = new Set(getSpotlightRoutes().map((r) => r.routeNumber));
 
   const ALL = allRoutes();

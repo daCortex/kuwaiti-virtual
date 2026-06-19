@@ -25,9 +25,15 @@ export default async function CrewEventsPage() {
       <div className="mt-6 grid gap-4 lg:grid-cols-[1.3fr_1fr]">
         <div className="rounded-2xl border border-obsidian bg-ink-900 p-6">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">✦ Route of the Week</p>
-          <p className="mt-2 font-display text-2xl font-semibold text-cream">{airportCity(current.dep)} → {airportCity(current.arr)}</p>
-          <p className="text-sm text-cream-faint">{firstFlightNo(current)} · {current.aircraft} · {fmtHours(current.minutes)}</p>
-          <div className="mt-4"><RotwManager current={current.routeNumber} options={options} /></div>
+          {current ? (
+            <>
+              <p className="mt-2 font-display text-2xl font-semibold text-cream">{airportCity(current.dep)} → {airportCity(current.arr)}</p>
+              <p className="text-sm text-cream-faint">{firstFlightNo(current)} · {current.aircraft} · {fmtHours(current.minutes)}</p>
+            </>
+          ) : (
+            <p className="mt-2 text-sm text-cream-dim">No routes yet — add routes in <span className="text-cream">Route management</span> to set a Route of the Week.</p>
+          )}
+          <div className="mt-4"><RotwManager current={current?.routeNumber ?? ""} options={options} /></div>
         </div>
         <div className="rounded-2xl border border-obsidian bg-ink-900 p-6">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-rose">Featured · this week</p>

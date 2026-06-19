@@ -75,6 +75,7 @@ export default async function Dashboard() {
       </section>
 
       {/* ============ ROUTE OF THE WEEK ============ */}
+      {rotw && (
       <section className="mt-4">
         <div className="rise overflow-hidden rounded-2xl border border-obsidian bg-ink-900 lift">
           <div className="flex items-center justify-between border-b border-obsidian/70 px-6 py-3">
@@ -90,6 +91,7 @@ export default async function Dashboard() {
           </div>
         </div>
       </section>
+      )}
 
       {/* ============ EVENTS (thin) ============ */}
       {events.length > 0 && (
@@ -118,6 +120,7 @@ export default async function Dashboard() {
           <Pill href="/crew/logbook" label="Logbook" />
           <Pill href="/crew/special-ops" label="Special Ops" locked={!d.gates.specialOps} />
           <Pill href="/crew/discover" label="Alliance Discover" locked={!d.gates.discover} />
+          {d.session.isStaff && <Pill href="/staff/codeshares" label="＋ Manage routes" />}
         </div>
       </section>
     </div>
