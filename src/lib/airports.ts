@@ -49,6 +49,19 @@ export const AIRPORTS: Record<string, { city: string; country: string; iata: str
   LEMD: { city: "Madrid", country: "Spain", iata: "MAD" },
   // --- North America ---
   KJFK: { city: "New York", country: "United States", iata: "JFK" },
+  CYYZ: { city: "Toronto", country: "Canada", iata: "YYZ" },
+  // --- Jet Airways network additions ---
+  VECC: { city: "Kolkata", country: "India", iata: "CCU" },
+  VOBL: { city: "Bangalore", country: "India", iata: "BLR" },
+  VHHH: { city: "Hong Kong", country: "Hong Kong", iata: "HKG" },
+  WSSS: { city: "Singapore", country: "Singapore", iata: "SIN" },
+  WMKK: { city: "Kuala Lumpur", country: "Malaysia", iata: "KUL" },
+  ZSPD: { city: "Shanghai", country: "China", iata: "PVG" },
+  FIMP: { city: "Port Louis", country: "Mauritius", iata: "MRU" },
+  FAOR: { city: "Johannesburg", country: "South Africa", iata: "JNB" },
+  EHAM: { city: "Amsterdam", country: "Netherlands", iata: "AMS" },
+  EBBR: { city: "Brussels", country: "Belgium", iata: "BRU" },
+  LIMC: { city: "Milan", country: "Italy", iata: "MXP" },
 };
 
 export function airportCity(icao: string): string {
@@ -72,4 +85,7 @@ export const AIRPORT_COORDS: Record<string, [number, number]> = {
   VTBS: [13.69, 100.75], RPLL: [14.51, 121.02], ZGGG: [23.39, 113.30],
   EGLL: [51.47, -0.46], EDDF: [50.03, 8.57], LFPG: [49.01, 2.55], LIRF: [41.80, 12.25],
   LSGG: [46.24, 6.11], LEMD: [40.47, -3.57], KJFK: [40.64, -73.78],
+  CYYZ: [43.68, -79.63], VECC: [22.65, 88.45], VOBL: [13.20, 77.71], VHHH: [22.31, 113.91],
+  WSSS: [1.36, 103.99], WMKK: [2.75, 101.71], ZSPD: [31.14, 121.81], FIMP: [-20.43, 57.68],
+  FAOR: [-26.13, 28.24], EHAM: [52.31, 4.76], EBBR: [50.90, 4.48], LIMC: [45.63, 8.72],
 };

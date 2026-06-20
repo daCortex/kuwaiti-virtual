@@ -1,14 +1,12 @@
 /* Generates src/lib/routes.ts — Kuwaiti Virtual route network (Kuwait hub OKKK).
 
-   The network now starts EMPTY — routes are managed in-app by staff
-   (Crew Center → Route management). Add routes there, or re-seed here by
-   filling the KUWAITI / CODESHARE arrays below and re-running this script.
+   Mainline KUWAITI / CODESHARE routes are managed in-app by staff
+   (Crew Center → Route management). Larger imported route packs (e.g. the
+   Jet Airways set from the airline's route sheet) are baked in below.
 
    Row format:
      KUWAITI:   [routeNumber, dep, arr, aircraft, minutes]            (airline "Kuwaiti")
-     CODESHARE: [routeNumber, dep, arr, aircraft, minutes, airline]   (partner)
-   Aircraft string convention: "Kuwaiti Boeing 777-300ER", etc.
-   (A prior real Kuwait Airways seed network lives in git history.)
+     CODESHARE/JET: [routeNumber, dep, arr, aircraft, minutes]        (+ explicit airline)
 
    Run: node scripts/gen-kuva-routes.mjs */
 import { writeFileSync } from "node:fs";
@@ -19,6 +17,61 @@ const KUWAITI = [];
 // [routeNumber, dep, arr, aircraft, minutes, airline]  — codeshare partners
 const CODESHARE = [];
 
+/* Jet Airways (9W) route pack — imported from the airline's route sheet.
+   Flown in Career and Cargo. (OKBK normalised to the current ICAO OKKK.) */
+const JET_AIRWAYS = [
+  ["9W1058", "VECC", "VOMM", "Jet Airways Boeing 737-900", 128],
+  ["9W1057", "VOMM", "VECC", "Jet Airways Boeing 737-900", 120],
+  ["9W1260", "VABB", "VECC", "Jet Airways Boeing 737-900", 165],
+  ["9W1261", "VECC", "VABB", "Jet Airways Boeing 737-900", 175],
+  ["9W1308", "VIDP", "VOBL", "Jet Airways Boeing 737-900", 165],
+  ["9W1309", "VOBL", "VIDP", "Jet Airways Boeing 737-900", 175],
+  ["9W256", "VIDP", "VCBI", "Jet Airways Boeing 737-900", 210],
+  ["9W257", "VCBI", "VIDP", "Jet Airways Boeing 737-900", 225],
+  ["9W543", "OMDB", "VIDP", "Jet Airways Boeing 737-900", 230],
+  ["9W544", "VIDP", "OMDB", "Jet Airways Boeing 737-900", 225],
+  ["9W549", "OTHH", "VABB", "Jet Airways Boeing 737-900", 230],
+  ["9W550", "VABB", "OTHH", "Jet Airways Boeing 737-900", 220],
+  ["9W560", "VABB", "OKKK", "Jet Airways Boeing 737-900", 270],
+  ["9W561", "OKKK", "VIDP", "Jet Airways Boeing 737-900", 295],
+  ["9W63", "VTBS", "VABB", "Jet Airways Boeing 737-900", 285],
+  ["9W64", "VABB", "VTBS", "Jet Airways Boeing 737-900", 255],
+  ["9W598", "VIDP", "WMKK", "Jet Airways Airbus A330-300", 315],
+  ["9W569", "OEDF", "VABB", "Jet Airways Boeing 737-900", 270],
+  ["9W570", "VABB", "OEDF", "Jet Airways Boeing 737-900", 260],
+  ["9W599", "WMKK", "VIDP", "Jet Airways Airbus A330-300", 288],
+  ["9W527", "VIDP", "OEJN", "Jet Airways Boeing 737-900", 330],
+  ["9W528", "OEJN", "VIDP", "Jet Airways Boeing 737-900", 340],
+  ["9W11", "WSSS", "VABB", "Jet Airways Airbus A330-300", 345],
+  ["9W12", "VABB", "WSSS", "Jet Airways Airbus A330-300", 315],
+  ["9W71", "VHHH", "VABB", "Jet Airways Airbus A330-300", 360],
+  ["9W72", "VABB", "VHHH", "Jet Airways Airbus A330-300", 330],
+  ["9W596", "VOHS", "FIMP", "Jet Airways Airbus A330-300", 375],
+  ["9W597", "FIMP", "VOHS", "Jet Airways Airbus A330-300", 356],
+  ["9W15", "WSSS", "VIDP", "Jet Airways Airbus A330-300", 375],
+  ["9W16", "VIDP", "WSSS", "Jet Airways Airbus A330-300", 345],
+  ["9W77", "ZSPD", "VABB", "Jet Airways Airbus A330-300", 420],
+  ["9W78", "VABB", "ZSPD", "Jet Airways Airbus A330-300", 390],
+  ["9W592", "VABB", "LIMC", "Jet Airways Boeing 777-300ER", 505],
+  ["9W593", "LIMC", "VABB", "Jet Airways Boeing 777-300ER", 442],
+  ["9W125", "EGLL", "VIDP", "Jet Airways Boeing 777-300ER", 510],
+  ["9W126", "VIDP", "EGLL", "Jet Airways Boeing 777-300ER", 540],
+  ["9W101", "VABB", "EGLL", "Jet Airways Boeing 777-300ER", 530],
+  ["9W102", "EGLL", "VABB", "Jet Airways Boeing 777-300ER", 570],
+  ["9W231", "EHAM", "VIDP", "Jet Airways Airbus A330-300", 540],
+  ["9W232", "VIDP", "EHAM", "Jet Airways Airbus A330-300", 510],
+  ["9W585", "VABB", "FAOR", "Jet Airways Airbus A330-300", 540],
+  ["9W586", "FAOR", "VABB", "Jet Airways Airbus A330-300", 505],
+  ["9W616", "VABB", "LFPG", "Jet Airways Airbus A330-300", 540],
+  ["9W617", "LFPG", "VABB", "Jet Airways Airbus A330-300", 510],
+  ["9W236", "VOBL", "EHAM", "Jet Airways Airbus A330-300", 585],
+  ["9W237", "EHAM", "VOBL", "Jet Airways Airbus A330-300", 615],
+  ["9W587", "VOMM", "EBBR", "Jet Airways Airbus A330-300", 595],
+  ["9W588", "EBBR", "VOMM", "Jet Airways Airbus A330-300", 563],
+  ["9W594", "VABB", "CYYZ", "Jet Airways Boeing 777-300ER", 935],
+  ["9W595", "CYYZ", "VABB", "Jet Airways Boeing 777-300ER", 915],
+];
+
 const routes = [
   ...KUWAITI.map(([routeNumber, dep, arr, aircraft, minutes]) => ({
     routeNumber, dep, arr, aircraft, minutes, airline: "Kuwaiti",
@@ -26,11 +79,16 @@ const routes = [
   ...CODESHARE.map(([routeNumber, dep, arr, aircraft, minutes, airline]) => ({
     routeNumber, dep, arr, aircraft, minutes, airline,
   })),
+  ...JET_AIRWAYS.map(([routeNumber, dep, arr, aircraft, minutes]) => ({
+    routeNumber, dep, arr, aircraft, minutes, airline: "Jet Airways",
+  })),
 ];
 
+const airlines = ["Kuwaiti", ...new Set([...CODESHARE.map((c) => c[5]), ...(JET_AIRWAYS.length ? ["Jet Airways"] : [])])];
+
 const header = `/* AUTO-GENERATED by scripts/gen-kuva-routes.mjs — Kuwaiti Virtual route
-   network, anchored at Kuwait International (OKKK). Starts empty; routes are
-   added by staff in the Crew Center → Route management. */
+   network, anchored at Kuwait International (OKKK). Mainline routes are managed
+   in the Crew Center; the Jet Airways pack is imported from the route sheet. */
 
 export type Route = {
   routeNumber: string;
@@ -44,10 +102,7 @@ export type Route = {
 export const ROUTES: Route[] = ${JSON.stringify(routes, null, 2)};
 
 /* Distinct airlines for the route-browser filter (mainline first). */
-export const ROUTE_AIRLINES = ${JSON.stringify([
-  "Kuwaiti",
-  ...[...new Set(CODESHARE.map((c) => c[5]))],
-])} as const;
+export const ROUTE_AIRLINES = ${JSON.stringify(airlines)} as const;
 `;
 
 writeFileSync(new URL("../src/lib/routes.ts", import.meta.url), header);

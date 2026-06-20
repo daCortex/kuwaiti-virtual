@@ -169,8 +169,9 @@ export function getDispatches(
   const spotlights = new Set(getSpotlightRoutes(d).map((x) => x.routeNumber));
   const rankMult = opts.rankMultiplier ?? 1;
 
-  // Eligible routes: prefer Kuwaiti mainline the pilot can fly.
-  let pool = kuwaitiRoutes().slice();
+  // Eligible routes: any route in the network the pilot can fly (Kuwaiti
+  // mainline, codeshares, and imported packs like Jet Airways).
+  let pool = allRoutes().slice();
   if (opts.authorizedFleet?.length) {
     const ok = pool.filter((rt) =>
       opts.authorizedFleet!.some((f) =>
@@ -235,7 +236,7 @@ const CARGO_TYPES = ["E190-F", "A321-F", "B777-F", "B747-8F"];
 export function getCargoContracts(pilotId: number, cargoHours = 0, d = new Date()): CargoContract[] {
   const r = rng((pilotId + 7) * 40503 + dayIndex(d));
   const cert = cargoCertForHours(cargoHours).name;
-  const pool = kuwaitiRoutes().filter((rt) => rt.minutes >= 90); // freight = meaningful sectors
+  const pool = allRoutes().filter((rt) => rt.minutes >= 90); // freight = meaningful sectors
   const risks: CargoRisk[] = ["low", "low", "medium", "medium", "high"];
   const out: CargoContract[] = [];
   const used = new Set<string>();
