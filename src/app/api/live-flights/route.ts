@@ -5,7 +5,7 @@ import {
   getFlightRoute,
   getFlightTrack,
 } from "@/lib/infiniteflight";
-import { allRoutes } from "@/lib/ops";
+import { allRoutes, refreshExtraRoutes } from "@/lib/ops";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -41,6 +41,7 @@ export async function GET() {
     return Response.json({ configured: false, flights: [] });
   }
 
+  await refreshExtraRoutes();
   const KUWAITI_ROUTES = buildKuwaitiRoutes();
 
   const [flights, liveries] = await Promise.all([

@@ -16,11 +16,11 @@ export async function POST(request: Request) {
   const action = String(body.action ?? "add");
 
   if (action === "delete") {
-    const ok = removeCodeshareRoute(String(body.routeNumber ?? ""));
+    const ok = await removeCodeshareRoute(String(body.routeNumber ?? ""));
     return ok ? Response.json({ ok: true }) : Response.json({ error: "Not found." }, { status: 400 });
   }
 
-  const res = addCodeshareRoute({
+  const res = await addCodeshareRoute({
     routeNumber: String(body.routeNumber ?? ""),
     dep: String(body.dep ?? ""),
     arr: String(body.arr ?? ""),

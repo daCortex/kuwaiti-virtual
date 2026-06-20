@@ -8,6 +8,7 @@
 ------------------------------------------------------------------- */
 
 import { ROUTES, type Route } from "./routes";
+import { dbConfigured, listRoutesDb, addRouteDb, removeRouteDb } from "./db";
 import {
   computeAp,
   categoryForMinutes,
@@ -59,19 +60,32 @@ function kuwaitiRoutes(): Route[] {
 export function getExtraRoutes(): Route[] {
   return [...store.extra];
 }
+
+/* Load staff-added routes from the database into the in-memory cache so the
+   synchronous accessors (allRoutes, getRotw, …) stay current. Call this at the
+   start of any async route-facing page/handler. No-op without a database. */
+export async function refreshExtraRoutes(): Promise<void> {
+  if (!dbConfigured) return;
+  try {
+    store.extra = await listRoutesDb();
+  } catch {
+    /* keep whatever cache we have if the DB read fails */
+  }
+}
 export function allAirlines(): string[] {
   return [...new Set(allRoutes().map((r) => r.airline))];
 }
 
-/* Staff: add a codeshare route to the database. */
-export function addCodeshareRoute(input: {
+/* Staff: add a route to the network. Persists to the database when one is
+   connected; otherwise held in the in-memory store for the session. */
+export async function addCodeshareRoute(input: {
   routeNumber: string;
   dep: string;
   arr: string;
   aircraft: string;
   minutes: number;
   airline: string;
-}): { ok: boolean; error?: string } {
+}): Promise<{ ok: boolean; error?: string }> {
   const routeNumber = input.routeNumber.trim().toUpperCase();
   const dep = input.dep.trim().toUpperCase();
   const arr = input.arr.trim().toUpperCase();
@@ -80,14 +94,19 @@ export function addCodeshareRoute(input: {
   if (!routeNumber || dep.length < 3 || arr.length < 3) return { ok: false, error: "Flight number and valid ICAO airports are required." };
   if (!airline) return { ok: false, error: "Airline is required." };
   if (!Number.isFinite(minutes) || minutes <= 0) return { ok: false, error: "Block time must be greater than zero." };
+  await refreshExtraRoutes();
   if (allRoutes().some((r) => r.routeNumber === routeNumber)) return { ok: false, error: "That flight number already exists." };
-  store.extra.push({ routeNumber, dep, arr, aircraft: input.aircraft.trim() || `${airline} aircraft`, minutes, airline });
+  const route: Route = { routeNumber, dep, arr, aircraft: input.aircraft.trim() || `${airline} aircraft`, minutes, airline };
+  if (dbConfigured) await addRouteDb(route);
+  store.extra.push(route);
   return { ok: true };
 }
-export function removeCodeshareRoute(routeNumber: string): boolean {
+export async function removeCodeshareRoute(routeNumber: string): Promise<boolean> {
+  let removed = false;
+  if (dbConfigured) removed = await removeRouteDb(routeNumber);
   const before = store.extra.length;
   store.extra = store.extra.filter((r) => r.routeNumber !== routeNumber);
-  return store.extra.length < before;
+  return removed || store.extra.length < before;
 }
 
 export function getRotw(): Route | null {

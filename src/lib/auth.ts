@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
 import { createHmac, timingSafeEqual, scryptSync, randomBytes } from "node:crypto";
+import { dbConfigured } from "./db";
 
 /* ----------------------------------------------------------------
    Discord OAuth + signed session cookie.
@@ -15,7 +16,6 @@ import { createHmac, timingSafeEqual, scryptSync, randomBytes } from "node:crypt
 ------------------------------------------------------------------- */
 
 export const authConfigured = !!process.env.DISCORD_CLIENT_ID;
-const dbConfigured = !!process.env.DATABASE_URL;
 const CREW_COOKIE = "fnr_crew";
 
 const SESSION_COOKIE = "fnr_session";
@@ -97,9 +97,11 @@ export async function getSession(): Promise<Session | null> {
     const session = verify(token);
     if (session) return session;
   }
-  // No valid session. Pure local dev (nothing configured) gets the demo pilot;
-  // otherwise signed out.
-  if (!authConfigured && !dbConfigured) return DEMO_SESSION;
+  // No valid session. Pure LOCAL dev (nothing configured) gets the demo pilot
+  // for convenience; in production the Crew Center always requires a real login.
+  if (!authConfigured && !dbConfigured && process.env.NODE_ENV !== "production") {
+    return DEMO_SESSION;
+  }
   return null;
 }
 

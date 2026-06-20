@@ -1,5 +1,5 @@
 import { listNews } from "@/lib/db";
-import { getRotw, rotwOptions, getSpotlightRoutes, firstFlightNo } from "@/lib/ops";
+import { getRotw, rotwOptions, getSpotlightRoutes, firstFlightNo, refreshExtraRoutes } from "@/lib/ops";
 import { airportCity } from "@/lib/airports";
 import { fmtHours } from "@/lib/portal";
 import { RotwManager } from "@/components/RotwManager";
@@ -9,6 +9,7 @@ export const dynamic = "force-dynamic";
 
 export default async function CrewEventsPage() {
   const [posts] = await Promise.all([listNews()]);
+  await refreshExtraRoutes();
   const current = getRotw();
   const spotlights = getSpotlightRoutes();
   const options = rotwOptions().map((r) => ({

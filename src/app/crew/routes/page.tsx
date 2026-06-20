@@ -1,5 +1,5 @@
 import { categoryForMinutes } from "@/lib/career";
-import { getRotw, getSpotlightRoutes, firstFlightNo, allRoutes, allAirlines } from "@/lib/ops";
+import { getRotw, getSpotlightRoutes, firstFlightNo, allRoutes, allAirlines, refreshExtraRoutes } from "@/lib/ops";
 import { airportCity } from "@/lib/airports";
 import { RouteFinder, type EnrichedRoute } from "@/components/portal/RouteFinder";
 
@@ -7,6 +7,7 @@ export const metadata = { title: "Route Database" };
 export const dynamic = "force-dynamic";
 
 export default async function RoutesPage() {
+  await refreshExtraRoutes();
   const rotwNo = getRotw()?.routeNumber ?? "";
   const spotlightNos = new Set(getSpotlightRoutes().map((r) => r.routeNumber));
 

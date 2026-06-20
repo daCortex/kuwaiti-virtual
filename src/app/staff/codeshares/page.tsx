@@ -1,10 +1,11 @@
-import { getExtraRoutes } from "@/lib/ops";
+import { getExtraRoutes, refreshExtraRoutes } from "@/lib/ops";
 import { PARTNERS } from "@/lib/data";
 import { CodeshareManager } from "@/components/CodeshareManager";
 
 export const dynamic = "force-dynamic";
 
-export default function CrewCodesharesPage() {
+export default async function CrewCodesharesPage() {
+  await refreshExtraRoutes();
   const routes = getExtraRoutes();
   // "Kuwaiti" first so staff can add mainline KU routes, then codeshare partners.
   const partners = ["Kuwaiti", ...PARTNERS.map((p) => p.name.replace(/ Virtual$/, ""))];

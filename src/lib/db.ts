@@ -1,5 +1,6 @@
 import { neon } from "@neondatabase/serverless";
 import { SEED_PILOTS, SEED_PIREPS } from "./seed";
+import type { Route } from "./routes";
 
 /* ----------------------------------------------------------------
    Data layer for pilots + PIREPs.
@@ -11,7 +12,16 @@ import { SEED_PILOTS, SEED_PIREPS } from "./seed";
    add DATABASE_URL.
 ------------------------------------------------------------------- */
 
-export const dbConfigured = !!process.env.DATABASE_URL;
+/* Accept the standard Neon var or the names Vercel's one-click Postgres
+   integration injects, so connecting a database is zero-config. */
+const DB_URL =
+  process.env.DATABASE_URL ||
+  process.env.POSTGRES_URL ||
+  process.env.POSTGRES_PRISMA_URL ||
+  process.env.DATABASE_URL_UNPOOLED ||
+  "";
+
+export const dbConfigured = !!DB_URL;
 
 export type PirepStatus = "pending" | "approved" | "rejected";
 export type PilotStatus = "pending" | "active" | "suspended";
@@ -140,7 +150,7 @@ export type Report = {
 
 /* ============================ Neon ============================ */
 
-const sql = dbConfigured ? neon(process.env.DATABASE_URL!) : null;
+const sql = dbConfigured ? neon(DB_URL) : null;
 let schemaReady = false;
 
 async function ensureSchema() {
@@ -201,6 +211,16 @@ async function ensureSchema() {
       created_at TIMESTAMPTZ DEFAULT now()
     )`;
   await sql`ALTER TABLE news ADD COLUMN IF NOT EXISTS event_at TIMESTAMPTZ`;
+  await sql`
+    CREATE TABLE IF NOT EXISTS routes (
+      route_number TEXT PRIMARY KEY,
+      dep TEXT NOT NULL,
+      arr TEXT NOT NULL,
+      aircraft TEXT,
+      minutes INTEGER NOT NULL,
+      airline TEXT NOT NULL,
+      created_at TIMESTAMPTZ DEFAULT now()
+    )`;
   await sql`
     CREATE TABLE IF NOT EXISTS loas (
       id SERIAL PRIMARY KEY,
@@ -609,6 +629,37 @@ export async function createPirep(input: NewPirep): Promise<Pirep> {
   };
   mem.pireps.unshift(p);
   return p;
+}
+
+/* ---- Staff-added routes (persist when a database is connected) ---- */
+export async function listRoutesDb(): Promise<Route[]> {
+  if (!sql) return [];
+  await ensureSchema();
+  const rows = await sql`SELECT route_number, dep, arr, aircraft, minutes, airline FROM routes ORDER BY created_at`;
+  return rows.map((r): Route => ({
+    routeNumber: r.route_number,
+    dep: r.dep,
+    arr: r.arr,
+    aircraft: r.aircraft ?? "",
+    minutes: Number(r.minutes),
+    airline: r.airline,
+  }));
+}
+export async function addRouteDb(route: Route): Promise<void> {
+  if (!sql) return;
+  await ensureSchema();
+  await sql`
+    INSERT INTO routes (route_number, dep, arr, aircraft, minutes, airline)
+    VALUES (${route.routeNumber}, ${route.dep}, ${route.arr}, ${route.aircraft}, ${route.minutes}, ${route.airline})
+    ON CONFLICT (route_number) DO UPDATE SET
+      dep = EXCLUDED.dep, arr = EXCLUDED.arr, aircraft = EXCLUDED.aircraft,
+      minutes = EXCLUDED.minutes, airline = EXCLUDED.airline`;
+}
+export async function removeRouteDb(routeNumber: string): Promise<boolean> {
+  if (!sql) return false;
+  await ensureSchema();
+  const rows = await sql`DELETE FROM routes WHERE route_number = ${routeNumber} RETURNING route_number`;
+  return rows.length > 0;
 }
 
 /* Most recent acceptance time (epoch ms) — the last pilot to join. Fallback
