@@ -2,7 +2,7 @@
 
 /* ----------------------------------------------------------------
    Kuwaiti Virtual — brand system (v2, pilot portal)
-   Palette: White #FFFFFF · Classic Dark Blue #1F2C56 · Deep Sea Blue #24638E
+   Palette: White #FFFFFF · Classic Dark Blue #1C285B · Deep Sea Blue #24638E
             Rock #AFAFAF · Black #121212
    Proportion: ~60% white, ~35% Classic Dark Blue, the rest as accents.
    Mood: modern, clean, sleek — white canvas, deep navy brand, sea-blue glow.
@@ -14,13 +14,13 @@
 @theme {
   /* Raw brand colours (use directly when a token isn't enough) */
   --color-fin-white: #ffffff;
-  --color-fin-blue: #1f2c56;
+  --color-fin-blue: #1c285b;
   --color-heather: #24638e;
   --color-rock: #afafaf;
   --color-fin-black: #121212;
 
   /* Brand accents — `gold` = Classic Dark Blue (primary), `rose` = Deep Sea Blue */
-  --color-gold: #1f2c56;
+  --color-gold: #1c285b;
   --color-gold-soft: #24638e; /* accent text — sea blue, AA on white */
   --color-rose: #24638e;
   --color-rose-soft: #2f7aaf;
@@ -60,7 +60,7 @@
    UI flips with no component changes. */
 html.dark {
   --color-ink-950: #0a1124; /* page background (near-black navy) */
-  --color-ink-900: #1f2c56; /* cards / surfaces — Classic Dark Blue */
+  --color-ink-900: #1c285b; /* cards / surfaces — Classic Dark Blue */
   --color-ink-850: #273461; /* inputs / lighter surfaces */
   --color-ink-800: #2f3d6e;
   --color-ink-700: #3a497d;
@@ -211,7 +211,7 @@ textarea {
   background:
     radial-gradient(1100px 480px at 12% -10%, color-mix(in srgb, var(--color-heather) 45%, transparent), transparent 60%),
     radial-gradient(900px 520px at 92% 0%, color-mix(in srgb, #24638e 55%, transparent), transparent 55%),
-    linear-gradient(135deg, #1f2c56 0%, #20406d 55%, #24638e 100%);
+    linear-gradient(135deg, #1c285b 0%, #20406d 55%, #24638e 100%);
 }
 .aurora-text {
   background: linear-gradient(105deg, #4f9bd1, var(--color-heather));
@@ -237,7 +237,7 @@ textarea {
 }
 /* In light mode, give cards a soft resting shadow for depth & scannability. */
 html:not(.dark) .lift {
-  box-shadow: 0 1px 2px -1px rgba(31, 44, 86, 0.07), 0 6px 16px -12px rgba(31, 44, 86, 0.12);
+  box-shadow: 0 1px 2px -1px rgba(28, 40, 91, 0.07), 0 6px 16px -12px rgba(28, 40, 91, 0.12);
 }
 
 /* Entrance animations (staggerable via inline animation-delay). */

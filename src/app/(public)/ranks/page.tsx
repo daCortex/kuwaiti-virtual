@@ -15,7 +15,7 @@ export default function RanksPage() {
         {RANKS.map((r, i) => (
           <li key={r.name} className="rise" style={{ animationDelay: `${i * 45}ms` }}>
             <div className={`flex items-stretch gap-4 rounded-2xl border p-4 lift ${r.group === "exclusive" ? "border-rose/30 bg-rose/[0.03]" : "border-obsidian bg-ink-900"}`}>
-              <div className="relative flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl font-display text-xl font-semibold text-white" style={{ background: r.group === "exclusive" ? "linear-gradient(135deg,#24638e,#1f2c56)" : "linear-gradient(135deg,#1f2c56,#24638e)" }}>
+              <div className="relative flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl font-display text-xl font-semibold text-white" style={{ background: r.group === "exclusive" ? "linear-gradient(135deg,#24638e,#1c285b)" : "linear-gradient(135deg,#1c285b,#24638e)" }}>
                 {String(r.n).padStart(2, "0")}
                 {r.group === "exclusive" && <span className="absolute -right-1 -top-1 text-sm">✦</span>}
               </div>

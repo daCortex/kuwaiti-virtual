@@ -232,7 +232,7 @@ export function FilePirep({
               <div className="mt-1 border-t border-obsidian/60 pt-2"><Row k="Counts toward rank" v={rawMin > 0 ? durLabel : "—"} strong /></div>
             </div>
           </div>
-          <button type="submit" disabled={busy} className="w-full rounded-full bg-gold px-6 py-3.5 text-sm font-semibold text-white shadow-[0_10px_30px_-12px_rgba(31,44,86,0.9)] transition-all hover:brightness-125 disabled:opacity-60">
+          <button type="submit" disabled={busy} className="w-full rounded-full bg-gold px-6 py-3.5 text-sm font-semibold text-white shadow-[0_10px_30px_-12px_rgba(28,40,91,0.9)] transition-all hover:brightness-125 disabled:opacity-60">
             {busy ? "Filing…" : "Submit PIREP"}
           </button>
           <p className="text-center text-xs text-cream-faint">Flights matched to your IF logbook are verified &amp; approved automatically.</p>

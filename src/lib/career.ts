@@ -193,7 +193,7 @@ export type Tier = {
 export const TIERS: Tier[] = [
   { name: "Member", min: 0, accent: "#AFAFAF", blurb: "Every journey starts here." },
   { name: "BlueBird Lite", min: 300000, accent: "#24638E", blurb: "A recognised regular of the network.", hoursReq: 1000, eventsReq: 5, multiplier: 2.0 },
-  { name: "BlueBird Silver", min: 750000, accent: "#1F2C56", blurb: "A pillar of Kuwaiti Virtual.", hoursReq: 2500, eventsReq: 15, multiplier: 2.5 },
+  { name: "BlueBird Silver", min: 750000, accent: "#1C285B", blurb: "A pillar of Kuwaiti Virtual.", hoursReq: 2500, eventsReq: 15, multiplier: 2.5 },
   { name: "BlueBird Gold", min: 1050000, accent: "#C9A24B", blurb: "Among our most decorated aviators.", hoursReq: 3500, eventsReq: 20, multiplier: 3.0 },
 ];
 

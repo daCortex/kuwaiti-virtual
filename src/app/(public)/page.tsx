@@ -94,7 +94,7 @@ export default function Home() {
       <section className="relative mt-4 flex min-h-[320px] items-end overflow-hidden lg:min-h-[440px]"
         style={{
           backgroundImage:
-            "linear-gradient(180deg, rgba(31,44,86,0.15) 0%, rgba(31,44,86,0.75) 100%), linear-gradient(135deg, #1f2c56 0%, #20406d 55%, #24638e 100%), url('/brand/aircraft.jpg')",
+            "linear-gradient(180deg, rgba(28,40,91,0.15) 0%, rgba(28,40,91,0.75) 100%), linear-gradient(135deg, #1c285b 0%, #20406d 55%, #24638e 100%), url('/brand/aircraft.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}>

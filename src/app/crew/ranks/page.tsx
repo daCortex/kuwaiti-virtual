@@ -73,7 +73,7 @@ export default async function RanksPage() {
 }
 
 function RankBadge({ n, group, dimmed }: { n: number; group: string; dimmed: boolean }) {
-  const grad = group === "exclusive" ? "linear-gradient(135deg,#24638e,#1f2c56)" : "linear-gradient(135deg,#1f2c56,#24638e)";
+  const grad = group === "exclusive" ? "linear-gradient(135deg,#24638e,#1c285b)" : "linear-gradient(135deg,#1c285b,#24638e)";
   return (
     <div className="relative flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl text-white" style={{ background: dimmed ? "var(--color-ink-800)" : grad, opacity: dimmed ? 0.5 : 1 }}>
       <span className="font-display text-xl font-semibold">{n}</span>

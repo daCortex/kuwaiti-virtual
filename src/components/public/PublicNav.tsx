@@ -41,7 +41,7 @@ export function PublicNav() {
         <div className="ml-auto flex items-center gap-2.5 lg:ml-0">
           <ThemeToggle />
           <Link href="/crew" className="hidden rounded-full border border-gold/40 px-4 py-2 text-sm font-medium text-gold transition-colors hover:bg-gold/8 sm:inline-flex">Crew Centre</Link>
-          <Link href="/join" className="hidden rounded-full bg-gold px-4 py-2 text-sm font-medium text-white shadow-[0_8px_24px_-10px_rgba(31, 44, 86,0.8)] transition-all hover:brightness-125 sm:inline-flex">Apply Now</Link>
+          <Link href="/join" className="hidden rounded-full bg-gold px-4 py-2 text-sm font-medium text-white shadow-[0_8px_24px_-10px_rgba(28, 40, 91,0.8)] transition-all hover:brightness-125 sm:inline-flex">Apply Now</Link>
           <button aria-label="Menu" onClick={() => setOpen((v) => !v)} className="flex h-9 w-9 items-center justify-center rounded-full border border-obsidian text-cream-dim lg:hidden">
             <span className="relative block h-3 w-4">
               <span className={`absolute left-0 block h-px w-full bg-current transition-all ${open ? "top-1.5 rotate-45" : "top-0"}`} />

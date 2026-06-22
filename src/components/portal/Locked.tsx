@@ -20,7 +20,7 @@ export function Locked({
   const toGo = Math.max(0, Math.ceil(hours - current));
   return (
     <div className="mx-auto max-w-2xl px-5 py-20 text-center lg:px-8">
-      <div className="rise mx-auto flex h-16 w-16 items-center justify-center rounded-2xl text-2xl text-white" style={{ background: accent === "rose" ? "linear-gradient(135deg,#24638e,#1f2c56)" : "linear-gradient(135deg,#1f2c56,#24638e)" }}>🔒</div>
+      <div className="rise mx-auto flex h-16 w-16 items-center justify-center rounded-2xl text-2xl text-white" style={{ background: accent === "rose" ? "linear-gradient(135deg,#24638e,#1c285b)" : "linear-gradient(135deg,#1c285b,#24638e)" }}>🔒</div>
       <h1 className="rise mt-5 font-display text-3xl font-semibold text-cream">{title}</h1>
       <p className="rise mx-auto mt-3 max-w-md text-cream-dim">{blurb}</p>
       <div className="rise mx-auto mt-7 max-w-sm rounded-2xl border border-obsidian bg-ink-900 p-5">
@@ -29,7 +29,7 @@ export function Locked({
           <span className="text-cream-faint">{hours.toLocaleString()}h</span>
         </div>
         <div className="mt-2 h-2 overflow-hidden rounded-full bg-ink-800">
-          <div className="bar-fill h-full rounded-full" style={{ ["--to" as string]: `${pct}%`, background: accent === "rose" ? "linear-gradient(90deg,#24638e,#4f9bd1)" : "linear-gradient(90deg,#1f2c56,#5b9bc9)" }} />
+          <div className="bar-fill h-full rounded-full" style={{ ["--to" as string]: `${pct}%`, background: accent === "rose" ? "linear-gradient(90deg,#24638e,#4f9bd1)" : "linear-gradient(90deg,#1c285b,#5b9bc9)" }} />
         </div>
         <p className="mt-2 text-xs text-cream-faint">{toGo.toLocaleString()} more flight hours to go</p>
       </div>

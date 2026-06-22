@@ -29,7 +29,7 @@ export function LiveMap({ hub, legs }: { hub: [number, number]; legs: Leg[] }) {
         : "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png";
       L.tileLayer(tiles, { subdomains: "abcd", maxZoom: 19, attribution: '&copy; OpenStreetMap &copy; CARTO' }).addTo(map);
 
-      const blue = "#1f2c56";
+      const blue = "#1c285b";
       const heather = "#24638e";
 
       // network arcs from hub

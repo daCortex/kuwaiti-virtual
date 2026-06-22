@@ -98,7 +98,7 @@ export function PortalNav({ summary }: { summary: NavSummary | null }) {
         <div className="ml-auto flex items-center gap-2.5">
           {/* File PIREP */}
           <Link href="/crew/file"
-            className="hidden rounded-full bg-gold px-4 py-2 text-sm font-medium text-white shadow-[0_8px_24px_-10px_rgba(31, 44, 86,0.8)] transition-all hover:brightness-125 sm:inline-flex">
+            className="hidden rounded-full bg-gold px-4 py-2 text-sm font-medium text-white shadow-[0_8px_24px_-10px_rgba(28, 40, 91,0.8)] transition-all hover:brightness-125 sm:inline-flex">
             File PIREP
           </Link>
 
@@ -115,7 +115,7 @@ export function PortalNav({ summary }: { summary: NavSummary | null }) {
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" className="text-cream-faint"><path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
               </button>
               {menu && (
-                <div className="pop absolute right-0 mt-2 w-64 overflow-hidden rounded-2xl border border-obsidian bg-ink-900 shadow-[0_24px_60px_-20px_rgba(31, 44, 86,0.45)]">
+                <div className="pop absolute right-0 mt-2 w-64 overflow-hidden rounded-2xl border border-obsidian bg-ink-900 shadow-[0_24px_60px_-20px_rgba(28, 40, 91,0.45)]">
                   <div className="border-b border-obsidian/70 px-4 py-3">
                     <p className="text-sm font-semibold text-cream">{summary.callsign}</p>
                     <p className="text-xs text-cream-faint">{summary.displayName}</p>
