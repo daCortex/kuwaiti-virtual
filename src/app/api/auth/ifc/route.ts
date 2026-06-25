@@ -9,6 +9,7 @@ import {
   getPilotPasscodeHash,
   setPilotPasscodeHash,
   setPilotStaff,
+  upsertManualPilot,
 } from "@/lib/db";
 
 /* Owner/admin IFC usernames that are auto-granted admin on login (comma-sep
@@ -43,7 +44,20 @@ export async function POST(request: Request) {
     return Response.json({ error: "Passcode must be at least 4 characters." }, { status: 400 });
   }
 
-  const pilot = await getPilotByIfUsername(ifUsername);
+  let pilot = await getPilotByIfUsername(ifUsername);
+  // Bootstrap admins (ADMIN_IFC_USERNAMES) can sign in even on a fresh database
+  // — their account is created as active staff on first login.
+  if (!pilot && isBootstrapAdmin(ifUsername)) {
+    pilot = await upsertManualPilot({
+      callsign: "Kuwaiti 001",
+      displayName: ifUsername,
+      ifUsername,
+      status: "active",
+      rankLabel: "BlueBird Commander",
+      notes: "Founder & Chief Executive Officer.",
+    });
+    await setPilotStaff(pilot.id, true);
+  }
   if (!pilot) {
     return Response.json(
       { error: "No pilot found with that IFC username. Ask staff to add you, or use /register in Discord." },
