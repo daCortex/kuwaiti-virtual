@@ -16,9 +16,9 @@ export default function AboutPage() {
         <h2 className="font-display text-2xl font-semibold text-cream">How we operate</h2>
         <div className="mt-4 grid gap-4 sm:grid-cols-3">
           {[
-            ["Career Mode", "Unlocks at 115 flight hours (Captain)."],
-            ["Cargo operations", "Eligible from 225 hours (Senior Captain)."],
-            ["Full fleet access", "Every aircraft unlocked at 115 hours (Captain)."],
+            ["Verified PIREPs", "Flights matched to your Infinite Flight logbook are auto-approved."],
+            ["Rank progression", "Seven ranks from Cadet to BlueBird Commander, by flight hours."],
+            ["Full fleet access", "Every aircraft unlocked as you climb the ladder."],
           ].map(([k, v]) => (
             <div key={k} className="rounded-2xl border border-obsidian bg-ink-900 p-5 lift">
               <p className="font-medium text-cream">{k}</p>

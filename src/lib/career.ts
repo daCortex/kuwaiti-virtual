@@ -28,7 +28,7 @@ export const RANKS: Rank[] = [
   { n: 1, name: "Cadet", hours: 0, group: "core", blurb: "Welcome aboard. Your career begins here in the Middle East.", perks: ["A320neo", "Middle-East region"] },
   { n: 2, name: "Junior Co-Pilot", hours: 10, group: "core", blurb: "Finding your wings across Asia and Africa.", perks: ["A330-800 · A330-900", "Asia & Africa regions"] },
   { n: 3, name: "Senior Co-Pilot", hours: 65, group: "core", blurb: "Widebody experience and the long sectors to Europe.", perks: ["B777-300ER", "Europe & Africa regions"] },
-  { n: 4, name: "Captain", hours: 115, group: "core", blurb: "In command — the whole fleet opens up.", perks: ["All aircraft", "Career Mode unlocked"] },
+  { n: 4, name: "Captain", hours: 115, group: "core", blurb: "In command — the whole fleet opens up.", perks: ["All aircraft", "All routes"] },
   { n: 5, name: "Senior Captain", hours: 225, group: "core", blurb: "Master of the global network.", perks: ["All aircraft & routes", "Cargo operations eligible"] },
   // ---- Exclusive ranks (BlueBird Rewards member) ----
   { n: 6, name: "BlueBird Captain", hours: 550, group: "exclusive", apMultiplier: 1.2, callsignRange: "66–85", blurb: "An elite aviator. Special Operations clearance granted.", perks: ["Callsign range 66–85", "1.2× Miles multiplier", "Special Ops access", "BlueBird Captain Discord badge"] },

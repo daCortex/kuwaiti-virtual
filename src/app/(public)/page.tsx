@@ -23,7 +23,7 @@ function legs() {
 
 const VALUES = [
   { tag: "Career Ranks", title: "Seven ranks. One ascent.", body: "Climb from Cadet to BlueBird Commander across 1,000 hours of structured progression.", href: "/ranks" },
-  { tag: "Career Mode", title: "Every flight, credited.", body: "Log hours across seven aircraft and 70 routes — your record follows you.", href: "/career" },
+  { tag: "Your Logbook", title: "Every flight, credited.", body: "File a PIREP for each flight and climb the ranks — your record follows you.", href: "/career" },
   { tag: "Leadership", title: "A crew built on precision.", body: "A real org structure — Founder, CEO, Board and four staff units.", href: "/about" },
   { tag: "The Fleet", title: "Six aircraft, one livery.", body: "A modern Airbus & Boeing fleet — from the A320neo to the 777-300ER flagship.", href: "/fleet" },
 ];

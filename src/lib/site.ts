@@ -23,7 +23,6 @@ export const PUBLIC_NAV = [
   { href: "/routes", label: "Routes" },
   { href: "/career", label: "Career" },
   { href: "/ranks", label: "Ranks" },
-  { href: "/modes", label: "Modes" },
 ] as const;
 
 export type SiteAircraft = {
@@ -94,16 +93,6 @@ export const SITE_MODES = [
     pros: ["No schedule windows", "Any unlocked aircraft / route", "Counts toward rank progression"],
     multiplier: "1.0×",
     scope: "Any unlocked",
-  },
-  {
-    name: "Career Mode",
-    unlock: "Captain · 115h",
-    tagline: "A structured, simulated career",
-    desc: "Bid for monthly rotations, follow a fixed roster, and operate under realistic airline constraints — fatigue, rest and reserve duty all apply.",
-    bestFor: "Pilots who want a real-world airline rhythm and faster progression",
-    pros: ["Faster rank progression", "Counts double toward rank", "Eligible for command upgrade pathway"],
-    multiplier: "1.25×",
-    scope: "Rostered",
   },
 ] as const;
 

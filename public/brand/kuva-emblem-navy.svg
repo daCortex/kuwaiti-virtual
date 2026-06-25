@@ -1,8 +1,10 @@
 <svg width="1000" height="1000" viewBox="0 0 1000 1000" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Kuwaiti Virtual">
-  <path d="M196 423
-           C 300 414 410 410 482 414
-           C 612 420 700 440 796 466
-           C 612 482 506 480 452 489
-           C 546 522 600 570 634 626
-           C 470 552 312 487 196 423 Z" fill="#1C285B"/>
+  <g transform="translate(0,1000) scale(1,-1)">
+    <path d="M196 423
+             C 300 414 410 410 482 414
+             C 612 420 700 440 796 466
+             C 612 482 506 480 452 489
+             C 546 522 600 570 634 626
+             C 470 552 312 487 196 423 Z" fill="#1C285B"/>
+  </g>
 </svg>

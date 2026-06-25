@@ -222,6 +222,18 @@ async function ensureSchema() {
       created_at TIMESTAMPTZ DEFAULT now()
     )`;
   await sql`
+    CREATE TABLE IF NOT EXISTS fleet_aircraft (
+      name TEXT PRIMARY KEY,
+      created_at TIMESTAMPTZ DEFAULT now()
+    )`;
+  await sql`
+    CREATE TABLE IF NOT EXISTS multipliers (
+      code TEXT PRIMARY KEY,
+      value REAL NOT NULL,
+      label TEXT NOT NULL,
+      created_at TIMESTAMPTZ DEFAULT now()
+    )`;
+  await sql`
     CREATE TABLE IF NOT EXISTS loas (
       id SERIAL PRIMARY KEY,
       pilot_id INTEGER REFERENCES pilots(id) ON DELETE CASCADE,
@@ -659,6 +671,47 @@ export async function removeRouteDb(routeNumber: string): Promise<boolean> {
   if (!sql) return false;
   await ensureSchema();
   const rows = await sql`DELETE FROM routes WHERE route_number = ${routeNumber} RETURNING route_number`;
+  return rows.length > 0;
+}
+
+/* ---- Staff-added aircraft (fileable fleet) ---- */
+export async function listAircraftDb(): Promise<string[]> {
+  if (!sql) return [];
+  await ensureSchema();
+  const rows = await sql`SELECT name FROM fleet_aircraft ORDER BY created_at`;
+  return rows.map((r) => r.name as string);
+}
+export async function addAircraftDb(name: string): Promise<void> {
+  if (!sql) return;
+  await ensureSchema();
+  await sql`INSERT INTO fleet_aircraft (name) VALUES (${name}) ON CONFLICT (name) DO NOTHING`;
+}
+export async function removeAircraftDb(name: string): Promise<boolean> {
+  if (!sql) return false;
+  await ensureSchema();
+  const rows = await sql`DELETE FROM fleet_aircraft WHERE name = ${name} RETURNING name`;
+  return rows.length > 0;
+}
+
+/* ---- Staff-added PIREP multipliers ---- */
+export type DbMultiplier = { code: string; value: number; label: string };
+export async function listMultipliersDb(): Promise<DbMultiplier[]> {
+  if (!sql) return [];
+  await ensureSchema();
+  const rows = await sql`SELECT code, value, label FROM multipliers ORDER BY value`;
+  return rows.map((r) => ({ code: r.code as string, value: Number(r.value), label: r.label as string }));
+}
+export async function addMultiplierDb(m: DbMultiplier): Promise<void> {
+  if (!sql) return;
+  await ensureSchema();
+  await sql`
+    INSERT INTO multipliers (code, value, label) VALUES (${m.code}, ${m.value}, ${m.label})
+    ON CONFLICT (code) DO UPDATE SET value = EXCLUDED.value, label = EXCLUDED.label`;
+}
+export async function removeMultiplierDb(code: string): Promise<boolean> {
+  if (!sql) return false;
+  await ensureSchema();
+  const rows = await sql`DELETE FROM multipliers WHERE code = ${code} RETURNING code`;
   return rows.length > 0;
 }
 

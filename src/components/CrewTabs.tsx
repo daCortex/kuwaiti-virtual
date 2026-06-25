@@ -11,8 +11,9 @@ const TABS = [
   { href: "/staff/flights", label: "Flights" },
   { href: "/staff/stats", label: "Stats" },
   { href: "/staff/events", label: "Events" },
-  { href: "/staff/codeshares", label: "Codeshares" },
-  { href: "/staff/operations", label: "Career · Cargo" },
+  { href: "/staff/codeshares", label: "Routes" },
+  { href: "/staff/fleet", label: "Aircraft · Multipliers" },
+  { href: "/staff/operations", label: "Reference" },
   { href: "/staff/loa", label: "LOA" },
   { href: "/staff/reports", label: "Reports" },
 ];

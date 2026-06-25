@@ -4,6 +4,7 @@ import { announceFiledPirep } from "@/lib/pireplog";
 import { multiplierFor } from "@/lib/data";
 import { VALID_AIRCRAFT } from "@/lib/aircraft";
 import { ifConfigured, findLogbookFlight } from "@/lib/infiniteflight";
+import { refreshFleetOps, getStaffAircraft, getStaffMultipliers } from "@/lib/fleetops";
 
 export async function POST(request: Request) {
   const session = await getSession();
@@ -30,7 +31,11 @@ export async function POST(request: Request) {
   const aircraft = str("aircraft");
   const rawMinutes = num("hours") * 60 + num("minutes");
   const multiplierCode = str("multiplier").toUpperCase() || null;
-  const multiplier = multiplierFor(multiplierCode);
+
+  // Include staff-added aircraft + multipliers (Crew Center).
+  await refreshFleetOps();
+  const staffMult = multiplierCode ? getStaffMultipliers().find((x) => x.code === multiplierCode) : undefined;
+  const multiplier = staffMult ? staffMult.value : multiplierFor(multiplierCode);
   const minutes = Math.round(rawMinutes * multiplier);
   const server = str("server") || null;
   const remarks = str("remarks") || null;
@@ -44,7 +49,7 @@ export async function POST(request: Request) {
       { status: 400 },
     );
   }
-  if (!VALID_AIRCRAFT.has(aircraft)) {
+  if (!VALID_AIRCRAFT.has(aircraft) && !getStaffAircraft().includes(aircraft)) {
     return Response.json({ error: "Unknown aircraft." }, { status: 400 });
   }
   if (rawMinutes <= 0) {

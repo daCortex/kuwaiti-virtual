@@ -4,19 +4,14 @@ import { getRotw, getSpotlightRoutes, firstFlightNo, refreshExtraRoutes } from "
 import { listNews } from "@/lib/db";
 import { airportCity } from "@/lib/airports";
 import { LiveFlightStatus } from "@/components/portal/LiveFlightStatus";
+import { PilotLogin } from "@/components/portal/PilotLogin";
 
 export const dynamic = "force-dynamic";
 
 export default async function Dashboard() {
   const d = await getPilotDashboard();
   if (!d) {
-    return (
-      <section className="mx-auto max-w-md px-6 py-32 text-center">
-        <h1 className="font-display text-3xl font-semibold text-cream">Sign-in required</h1>
-        <p className="mt-3 text-cream-dim">Staff can manage the airline from the Crew Center. Pilot sign-in opens once Discord login is connected.</p>
-        <Link href="/staff" className="mt-6 inline-flex rounded-full bg-gold px-6 py-3 text-sm font-medium text-white">Go to Crew Center</Link>
-      </section>
-    );
+    return <PilotLogin />;
   }
 
   const { rank, license } = d;
