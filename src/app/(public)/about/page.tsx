@@ -8,7 +8,7 @@ export default function AboutPage() {
       <header className="reveal">
         <p className="eyebrow">About</p>
         <h1 className="mt-2 font-display text-4xl font-semibold text-cream lg:text-5xl">A virtual airline built like a real one.</h1>
-        <p className="mt-4 max-w-2xl text-cream-dim">Kuwaiti Virtual operates inside Infinite Flight with real-world airline discipline and structure — a 70-route network from Kuwait City (OKKK), focus cities in Dubai and Jeddah, and a seven-rank path from Cadet to BlueBird Commander.</p>
+        <p className="mt-4 max-w-2xl text-cream-dim">Kuwaiti Virtual operates inside Infinite Flight with real-world airline discipline and structure — a 70-route network from Kuwait City (OKKK), focus cities in Dubai and Jeddah, and a nine-rank path from Cadet to BlueBird Commander.</p>
       </header>
 
       {/* How we operate */}
@@ -17,7 +17,7 @@ export default function AboutPage() {
         <div className="mt-4 grid gap-4 sm:grid-cols-3">
           {[
             ["Verified PIREPs", "Flights matched to your Infinite Flight logbook are auto-approved."],
-            ["Rank progression", "Seven ranks from Cadet to BlueBird Commander, by flight hours."],
+            ["Rank progression", "Nine ranks from Cadet to BlueBird Commander, by flight hours."],
             ["Full fleet access", "Every aircraft unlocked as you climb the ladder."],
           ].map(([k, v]) => (
             <div key={k} className="rounded-2xl border border-obsidian bg-ink-900 p-5 lift">

@@ -68,18 +68,30 @@ export async function POST(request: Request) {
     return Response.json({ error: "This account is suspended. Contact staff." }, { status: 403 });
   }
 
-  const stored = await getPilotPasscodeHash(pilot.id);
+  const bootstrap = isBootstrapAdmin(ifUsername);
+  // Admin passcode — a fixed, env-configured password for the owner accounts.
+  // This is secure without a database (the per-pilot passcode hash is only
+  // durable once a DB is connected), so admins can't be logged in with "any"
+  // password.
+  const adminPass = process.env.ADMIN_PASSCODE || process.env.CREW_PASSWORD || "";
+
   let firstTime = false;
-  if (!stored) {
-    // First login: the passcode they enter becomes their passcode.
-    await setPilotPasscodeHash(pilot.id, hashPasscode(passcode));
-    firstTime = true;
-  } else if (!verifyPasscode(passcode, stored)) {
-    return Response.json({ error: "Incorrect passcode." }, { status: 401 });
+  if (bootstrap && adminPass) {
+    if (passcode !== adminPass) {
+      return Response.json({ error: "Incorrect passcode." }, { status: 401 });
+    }
+  } else {
+    const stored = await getPilotPasscodeHash(pilot.id);
+    if (!stored) {
+      // First login: the passcode they enter becomes their passcode.
+      await setPilotPasscodeHash(pilot.id, hashPasscode(passcode));
+      firstTime = true;
+    } else if (!verifyPasscode(passcode, stored)) {
+      return Response.json({ error: "Incorrect passcode." }, { status: 401 });
+    }
   }
 
   // Auto-grant (and persist) admin for configured owner IFC usernames.
-  const bootstrap = isBootstrapAdmin(ifUsername);
   if (bootstrap && pilot.isStaff !== true) {
     await setPilotStaff(pilot.id, true);
   }

@@ -11,7 +11,7 @@ export default async function DiscoverPage() {
   const d = await getPilotDashboard();
   if (!d) return null;
   if (!d.gates.discover) {
-    return <Locked title="Alliance Discover" rank="BlueBird Commander" hours={1000} current={d.totalHours} blurb="Explore the wider partner alliance — partner metal on codeshare sectors across the globe. Reserved for BlueBird Commander aviators." accent="rose" />;
+    return <Locked title="Alliance Discover" rank="BlueBird Senior Captain" hours={1000} current={d.totalHours} blurb="Explore the wider partner alliance — partner metal on codeshare sectors across the globe. Reserved for BlueBird Senior Captain and above." accent="rose" />;
   }
 
   const routes = allRoutes().filter((r) => r.airline !== "Kuwaiti");
@@ -19,7 +19,7 @@ export default async function DiscoverPage() {
   return (
     <div className="mx-auto max-w-7xl px-5 py-10 lg:px-8">
       <header className="rise">
-        <p className="eyebrow" style={{ color: "var(--color-rose)" }}>BlueBird Commander privilege</p>
+        <p className="eyebrow" style={{ color: "var(--color-rose)" }}>BlueBird Senior Captain privilege</p>
         <h1 className="mt-2 font-display text-4xl font-semibold text-cream">Alliance Discover</h1>
         <p className="mt-2 max-w-xl text-cream-dim">Fly partner metal across the alliance network — {routes.length} codeshare sectors logged to your Kuwaiti Virtual record.</p>
       </header>

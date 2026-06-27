@@ -10,14 +10,14 @@
 /* ======================= RANK LADDER ======================= */
 
 export type Rank = {
-  n: number; // ladder position 1..7
+  n: number; // ladder position 1..9
   name: string;
   hours: number; // hour threshold to reach it
   blurb: string;
   group: "core" | "exclusive";
-  apMultiplier?: number; // rank-based Miles bonus (BlueBird Captain 1.2×, BlueBird Commander 1.5×)
+  apMultiplier?: number; // rank-based Miles bonus (BlueBird ranks)
   callsignRange?: string; // unlocked custom callsign range
-  perks?: string[];
+  perks?: string[]; // aircraft unlocked at this rank (no region locks)
   // legacy/manual fields kept for the staff Crew Center
   note?: string;
   manual?: boolean;
@@ -25,14 +25,16 @@ export type Rank = {
 };
 
 export const RANKS: Rank[] = [
-  { n: 1, name: "Cadet", hours: 0, group: "core", blurb: "Welcome aboard. Your career begins here in the Middle East.", perks: ["A320neo", "Middle-East region"] },
-  { n: 2, name: "Junior Co-Pilot", hours: 10, group: "core", blurb: "Finding your wings across Asia and Africa.", perks: ["A330-800 · A330-900", "Asia & Africa regions"] },
-  { n: 3, name: "Senior Co-Pilot", hours: 65, group: "core", blurb: "Widebody experience and the long sectors to Europe.", perks: ["B777-300ER", "Europe & Africa regions"] },
-  { n: 4, name: "Captain", hours: 115, group: "core", blurb: "In command — the whole fleet opens up.", perks: ["All aircraft", "All routes"] },
-  { n: 5, name: "Senior Captain", hours: 225, group: "core", blurb: "Master of the global network.", perks: ["All aircraft & routes", "Cargo operations eligible"] },
-  // ---- Exclusive ranks (BlueBird Rewards member) ----
-  { n: 6, name: "BlueBird Captain", hours: 550, group: "exclusive", apMultiplier: 1.2, callsignRange: "66–85", blurb: "An elite aviator. Special Operations clearance granted.", perks: ["Callsign range 66–85", "1.2× Miles multiplier", "Special Ops access", "BlueBird Captain Discord badge"] },
-  { n: 7, name: "BlueBird Commander", hours: 1000, group: "exclusive", apMultiplier: 1.5, callsignRange: "45–65", blurb: "A living legend of Kuwaiti Virtual.", perks: ["Callsign range 45–65", "1.5× Miles multiplier", "BlueBird Rewards eligible", "BlueBird Commander Discord badge"] },
+  { n: 1, name: "Cadet", hours: 0, group: "core", blurb: "Welcome aboard. Your career begins here.", perks: ["A320 Family", "737 Family", "A220-300"] },
+  { n: 2, name: "Junior Co-Pilot", hours: 15, group: "core", blurb: "Stepping up to widebody operations.", perks: ["A330 Family", "787 Family"] },
+  { n: 3, name: "Senior Co-Pilot", hours: 65, group: "core", blurb: "Long-haul widebody command experience.", perks: ["777 Family", "A350 Family"] },
+  { n: 4, name: "Captain", hours: 115, group: "core", blurb: "In command of the heavies — the full fleet opens up.", perks: ["747 Family", "A380", "DC-10"] },
+  { n: 5, name: "Senior Captain", hours: 225, group: "core", blurb: "A seasoned commander with the whole fleet at your hands.", perks: ["Full fleet unlocked"] },
+  // ---- Exclusive BlueBird ranks ----
+  { n: 6, name: "BlueBird Captain", hours: 550, group: "exclusive", apMultiplier: 1.2, blurb: "An elite aviator. Special Operations clearance granted.", perks: ["Special Ops access", "BlueBird Captain badge"] },
+  { n: 7, name: "BlueBird Senior Captain", hours: 1000, group: "exclusive", apMultiplier: 1.3, blurb: "A pillar of the airline.", perks: ["Alliance Discover", "BlueBird Senior Captain badge"] },
+  { n: 8, name: "BlueBird Fleet Captain", hours: 2000, group: "exclusive", apMultiplier: 1.4, blurb: "Among our most decorated aviators.", perks: ["BlueBird Fleet Captain badge"] },
+  { n: 9, name: "BlueBird Commander", hours: 3000, group: "exclusive", apMultiplier: 1.5, blurb: "A living legend of Kuwaiti Virtual.", perks: ["BlueBird Commander badge"] },
 ];
 
 export type RankProgress = {
@@ -75,10 +77,10 @@ export type License = {
 };
 
 export const LICENSES: License[] = [
-  { name: "Private Pilot License", short: "PPL", hours: 0, fleet: ["A320neo"] },
-  { name: "Commercial Pilot License", short: "CPL", hours: 10, fleet: ["A321neo", "A330-800", "A330-900"] },
-  { name: "Command License", short: "Command", hours: 65, fleet: ["A330-300", "B777-300ER"] },
-  { name: "Captain", short: "Captain", hours: 225, fleet: ["All aircraft", "Cargo fleet"] },
+  { name: "Private Pilot License", short: "PPL", hours: 0, fleet: ["A320 Family", "737 Family", "A220-300"] },
+  { name: "Commercial Pilot License", short: "CPL", hours: 15, fleet: ["A330 Family", "787 Family"] },
+  { name: "Command License", short: "Command", hours: 65, fleet: ["777 Family", "A350 Family"] },
+  { name: "Captain", short: "Captain", hours: 115, fleet: ["747 Family", "A380", "DC-10"] },
 ];
 
 export function licenseForHours(totalHours: number): {
@@ -250,5 +252,5 @@ export const GATES = {
   careerMode: "Captain", // 115h+
   cargoMode: "Senior Captain", // 225h+
   specialOps: "BlueBird Captain", // 550h+
-  blueBird: "BlueBird Commander", // 1000h+
+  blueBird: "BlueBird Senior Captain", // 1000h+
 } as const;

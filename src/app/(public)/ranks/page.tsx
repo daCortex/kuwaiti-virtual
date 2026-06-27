@@ -7,8 +7,8 @@ export default function RanksPage() {
     <div className="mx-auto max-w-5xl px-5 py-16 lg:px-8 lg:py-20">
       <header className="reveal">
         <p className="eyebrow">Pilot career progression</p>
-        <h1 className="mt-2 font-display text-4xl font-semibold text-cream lg:text-5xl">Seven ranks. One ascent.</h1>
-        <p className="mt-4 max-w-2xl text-cream-dim">Progress through the ranks as you accumulate flight hours, unlocking new aircraft, routes and privileges. The final three are exclusive ranks with BlueBird Bank access.</p>
+        <h1 className="mt-2 font-display text-4xl font-semibold text-cream lg:text-5xl">Nine ranks. One ascent.</h1>
+        <p className="mt-4 max-w-2xl text-cream-dim">Progress through the ranks as you accumulate flight hours, unlocking new aircraft and privileges. The final four are exclusive BlueBird ranks for our most experienced aviators.</p>
       </header>
 
       <ol className="mt-10 space-y-3">
@@ -37,7 +37,7 @@ export default function RanksPage() {
           </li>
         ))}
       </ol>
-      <p className="mt-6 text-center font-display text-lg text-cream-dim">Seven ranks. One thousand hours.</p>
+      <p className="mt-6 text-center font-display text-lg text-cream-dim">Nine ranks. Three thousand hours.</p>
     </div>
   );
 }

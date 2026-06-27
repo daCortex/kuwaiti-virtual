@@ -16,7 +16,7 @@ export default function CrewOperationsPage() {
         <h2 className="font-display text-2xl font-semibold text-cream">Operations</h2>
       </div>
       <p className="mt-2 max-w-2xl text-sm text-cream-dim">
-        The pilot career runs on verified flight hours — every approved PIREP advances a pilot through the seven-rank
+        The pilot career runs on verified flight hours — every approved PIREP advances a pilot through the nine-rank
         ladder. Use the panels below as a reference for the progression structure.
       </p>
 

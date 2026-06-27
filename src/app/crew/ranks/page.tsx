@@ -15,8 +15,8 @@ export default async function RanksPage() {
         <p className="eyebrow">Progression</p>
         <h1 className="mt-2 font-display text-4xl font-semibold text-cream">The rank ladder</h1>
         <p className="mt-3 max-w-2xl text-cream-dim">
-          Seven ranks from <span className="text-cream">Cadet</span> to <span className="text-cream">BlueBird Commander</span>. Every verified hour
-          banks toward the next. The final two are exclusive ranks reserved for our most experienced aviators.
+          Nine ranks from <span className="text-cream">Cadet</span> to <span className="text-cream">BlueBird Commander</span>. Every verified hour
+          banks toward the next. The final four are exclusive BlueBird ranks reserved for our most experienced aviators.
         </p>
       </header>
 

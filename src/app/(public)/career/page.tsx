@@ -10,7 +10,7 @@ export default function CareerPage() {
       <header className="reveal">
         <p className="eyebrow">Progression</p>
         <h1 className="mt-2 font-display text-4xl font-semibold text-cream lg:text-5xl">From First Officer, to Captain.</h1>
-        <p className="mt-4 max-w-2xl text-cream-dim">Seven ranks. Three flying modes. A single, structured path that rewards every logged hour — from your first Cadet flight to the BlueBird Commander command seat.</p>
+        <p className="mt-4 max-w-2xl text-cream-dim">Nine ranks. A single, structured path that rewards every logged hour — from your first Cadet flight to the BlueBird Commander command seat.</p>
       </header>
 
       {/* The ladder */}
@@ -28,7 +28,7 @@ export default function CareerPage() {
             </div>
           ))}
         </div>
-        <p className="mt-4 text-center font-display text-lg text-cream-dim">Seven ranks. One thousand hours.</p>
+        <p className="mt-4 text-center font-display text-lg text-cream-dim">Nine ranks. Three thousand hours.</p>
       </section>
 
       {/* Modes */}
